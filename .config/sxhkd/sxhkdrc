@@ -32,23 +32,12 @@ ctrl + shift + Escape
 # Audiokeys
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle; refreshbar.sh
-#    pamixer -m
-#    pamixer -u
+#    pamixer -{m,u}
 XF86Audio{Raise,Lower}Volume
     pamixer -{i,d} 5; refreshbar.sh
-#XF86Audio{Next,Prev}
-#XF86Audio{Pause,Play,Stop}
-XF86AudioPlay
-    playerctl play-pause
 
-XF86AudioNext
-    playerctl next
-
-XF86AudioPrev
-    playerctl previous
-
-XF86AudioStop
-    playerctl stop
+XF86Audio{Play,Pause,Next,Prev}
+    cmus-remote -{u,u,n,r}
 
 # Brightness controls
 XF86MonBrightnessUp
