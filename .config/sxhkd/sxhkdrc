@@ -1,0 +1,58 @@
+# basic binds
+super + Return
+    $TERMINAL
+
+super + m
+    $TERMINAL -e cmus
+
+super + r
+    $TERMINAL -e $FILE
+
+super + shift + w
+    $BROWSER
+
+super + p
+    dmenu_run -i -p "Run" -fn "DejaVu Sans Mono:size=14" -nb '#000010' -nf '#e6e6e6' -sb '#3333cc'
+
+ctrl + alt + l
+    $HOME/.config/i3lock/beut.sh
+
+Print
+    scrot '%Y%m%d-%T.png' -e 'mv $f ~/Pictures/Screenshots/'
+
+super + Insert
+    clipmenu -i -p "Clipboard" -l 20 -fn "DejaVu Sans Mono:size=14" -nb '#000010' -nf '#e6e6e6' -sb '#3333cc'
+
+ctrl + alt + Delete
+    poweroff
+
+ctrl + shift + Escape
+    reboot
+
+# Audiokeys
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle; refreshbar.sh
+#    pamixer -m
+#    pamixer -u
+XF86Audio{Raise,Lower}Volume
+    pamixer -{i,d} 5; refreshbar.sh
+#XF86Audio{Next,Prev}
+#XF86Audio{Pause,Play,Stop}
+XF86AudioPlay
+    playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+XF86AudioStop
+    playerctl stop
+
+# Brightness controls
+XF86MonBrightnessUp
+    sudo /usr/local/bin/brightness/Bright_Up.sh
+
+XF86MonBrightnessDown
+    sudo /usr/local/bin/brightness/Bright_Down.sh
