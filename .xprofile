@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 #picom -CGb -o 0 --refresh-rate 75 --backend glx &
 #albert &
@@ -6,4 +6,4 @@ dwmbar &
 clipmenud &
 sxhkd &
 xset r rate 200 40 &
-xwallpaper --center $HOME/Pictures/Wallpapers/penguins.jpg &
+xwallpaper --center "$HOME"/Pictures/Wallpapers/penguins.jpg &

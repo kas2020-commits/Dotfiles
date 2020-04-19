@@ -5,10 +5,12 @@
 	colorscheme peachpuff
         " Change cterm=NONE to to cterm=bold if you like
         highlight CursorLine ctermbg=0 cterm=NONE
+        " highlight CursorColumn ctermbg=0 cterm=NONE
         set mouse=a
 	set encoding=utf-8
         set spelllang=en_us
         set cursorline " Changes the line the cursor is on
+        " set cursorcolumn
 	set ruler " Always show cursor location on bottom-right
 	set scrolloff=7 " how many lines does the cursor need as cushion space
 	let c_comment_strings=1

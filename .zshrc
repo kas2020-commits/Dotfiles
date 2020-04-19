@@ -111,3 +111,7 @@ alias dotfiles-config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 #neofetch
 #cowfortune | lolcat
 #figlet suckless
+#alias the_power_of_christ_compels_you!='sudo'
+
+
+

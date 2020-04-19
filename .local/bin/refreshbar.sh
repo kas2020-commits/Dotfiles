@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/dash
 
 kill "$(pstree -lp | grep -- -dwmbar\([0-9] | sed "s/.*sleep(\([0-9]\+\)).*/\1/")"

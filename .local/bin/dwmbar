@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 while :; do
     xsetroot -name "   $(free -h | awk '/^Mem:/ {print $3}' | sed "s/Gi/G/g")  :   $(sensors | awk '/^Tdie/ {print $2}' | sed "s/+//")  :   $(pamixer --get-volume-human)  :  $(date '+%b %d (%a) %I:%M %p')"
