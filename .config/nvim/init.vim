@@ -74,6 +74,14 @@
         map <C-i> gg=G<C-o>
         " Clears the last search
         map <leader><esc> :let @/ = ""<CR>
+        " Easy way to comment out lines
+        map <leader>c# :s/^/# / \| let @/ = ""<CR>
+        map <leader>c" :s/^/" / \| let @/ = ""<CR>
+        map <leader>c/ :s/^/\/\/ / \| let @/ = ""<CR>
+        " And to uncomment...
+        map <leader>u# :s/^# // \| let @/ = ""<CR>
+        map <leader>u" :s/^" // \| let @/ = ""<CR>
+        map <leader>u/ :s/^\/\/ // \| let @/ = ""<CR>
 
 " Outside Scripts:
         " Compile latex document

@@ -63,7 +63,6 @@ bindkey -v '^?' backward-delete-char
 autoload edit-command-line;zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
@@ -89,9 +88,7 @@ preexec() { echo -ne '\e[4 q' ;} # Use beam shape cursor for each new prompt.
 alias ls="ls --color --group-directories-first"
 alias l="lsd -hA --group-dirs first"
 alias grep='grep --color=auto'
-alias v="nvim"
-alias se="fzf | xargs -r nvim"
-#alias less="less --IGNORE-CASE --LINE-NUMBERS"
+alias less="less --IGNORE-CASE --LINE-NUMBERS"
 # Git-related
 alias gs="git status"
 alias ga="git add *"
@@ -104,9 +101,14 @@ alias mem-eaters='ps axch -o cmd:15,%mem --sort=-%mem | head'
 alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)\nMEM HOGGS:\n$(ps axch -o cmd:15,%mem --sort=-%mem | sed 3q)"'
 
 # Dotfiles Manager (for bare repo)
-alias dotfiles-config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias dcs='git --git-dir=$HOME/.dotfiles --work-tree=$HOME status'
+alias dca='git --git-dir=$HOME/.dotfiles --work-tree=$HOME add'
+alias dcd='git --git-dir=$HOME/.dotfiles --work-tree=$HOME diff'
+alias dcm='git --git-dir=$HOME/.dotfiles --work-tree=$HOME commit -m'
 
-conf() {du -a ~/.local/bin/* ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
+se() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
+pdf() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $READER ;}
+conf() {du -a ~/.local/* ~/.config/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
 
 #neofetch
 #cowfortune | lolcat

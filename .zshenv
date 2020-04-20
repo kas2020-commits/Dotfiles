@@ -22,3 +22,6 @@ export PATH=$PATH:/usr/bin/core_perl
 #export PATH=$PATH:/usr/bin/site_perl
 #export PATH=$PATH:/usr/bin/vendor_perl
 #export PATH=$PATH:/usr/local/sbin
+
+## Command options ##
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
