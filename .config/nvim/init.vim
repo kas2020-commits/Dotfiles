@@ -16,19 +16,19 @@
 	let c_comment_strings=1
         set autochdir " Changes directory to the file's dir
         set clipboard+=unnamedplus " tell vim to use main clipboard
-        " Centers screen when entering insert mode
+	" Center screen when entering insert mode:
         autocmd InsertEnter * norm zz
 	set splitbelow splitright " set splitting to be more normal:
 	set wildmenu " The nice tab completions at the command
 	set ignorecase " Ignore case sensitivity when searching
 	set smartcase " Tries to be smart about searching
 	set lazyredraw " Good for performance when using macros
-	set magic
-	set showmatch
+	set magic " More search stuff
+	set showmatch " More search stuff
 	set t_Co=16 " Makes vim use the 16 terminal colors only
-	set linebreak
-	set textwidth=80
-	set wrap
+	set linebreak " Makes line wrapping better
+	set textwidth=80 " Max line width before linebreak is triggered
+	set wrap " same as linebreak but uses terminal width
 	autocmd FileType * setlocal formatoptions-=cro " Disables automatic commenting on new lines
 	autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
         set path+=**
@@ -87,10 +87,6 @@
         set laststatus=1
 	set statusline=[%n]\ %<%F\ \ \ [%M%R%H%W%Y][%{&ff}]\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%
         hi statusline ctermfg=8 ctermbg=2 " for some reason fg and bg are swapped.
-
-set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-            \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-            \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " Changes cursor shape depending on what mode you're in (only needed for non-neovim)
         let &t_SI = "\<Esc>[6 q"
