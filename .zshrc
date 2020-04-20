@@ -88,11 +88,10 @@ preexec() { echo -ne '\e[4 q' ;} # Use beam shape cursor for each new prompt.
 ## Some Aliases ##
 alias ls="ls --color --group-directories-first"
 alias l="lsd -hA --group-dirs first"
-alias ex="exa --icons -a --group-directories-first"
 alias grep='grep --color=auto'
 alias v="nvim"
+alias se="fzf | xargs -r nvim"
 #alias less="less --IGNORE-CASE --LINE-NUMBERS"
-#alias less="more"
 # Git-related
 alias gs="git status"
 alias ga="git add *"
@@ -107,6 +106,7 @@ alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)
 # Dotfiles Manager (for bare repo)
 alias dotfiles-config='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
+conf() {du -a ~/.local/bin/* ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;}
 
 #neofetch
 #cowfortune | lolcat

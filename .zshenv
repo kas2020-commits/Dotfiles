@@ -2,7 +2,7 @@ typeset -U PATH path
 
 export VISUAL="nvim"
 export EDITOR="nvim"
-export READER="evince"
+export READER="zathura"
 export FILE="nnn"
 export TERMINAL="st"
 export TERM="st"
