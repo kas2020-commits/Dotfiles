@@ -12,7 +12,7 @@ super + shift + w
     $BROWSER
 
 super + p
-    dmenu_run -i -p "Run" -fn "DejaVu Sans Mono:size=14" -nb '#222222' -nf '#ffffff' -sb '#3333cc'
+    dmenu_run -i -p "Run"
 
 ctrl + alt + l
     $HOME/.config/i3lock/beut.sh
@@ -21,13 +21,10 @@ Print
     scrot '%Y%m%d-%T.png' -e 'mv $f ~/Pictures/Screenshots/'
 
 super + Insert
-    clipmenu -i -p "Clipboard" -l 20 -fn "DejaVu Sans Mono:size=14" -nb '#222222' -nf '#ffffff' -sb '#3333cc'
+    clipmenu -i -p "Clipboard" -l 20
 
 ctrl + alt + Delete
-    poweroff
-
-ctrl + shift + Escape
-    reboot
+    power-management.sh
 
 # Audiokeys
 XF86AudioMute

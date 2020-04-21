@@ -1,3 +1,9 @@
+"        _
+" __   _(_)_ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+"   \_/ |_|_| |_| |_|_|  \___|
+
 " Global Rules:
 	set nocompatible "sets no compatible to vi-mode
 	let mapleader =" "
@@ -37,6 +43,7 @@
 
 " Fileype Specific:
         autocmd BufWritePost *Xresources !xrdb % " Auto reload the Xresources
+        autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 
 " Indentation:
         filetype plugin indent on
@@ -54,7 +61,7 @@
         nnoremap Y y$
 	" for writing out and closing
 	map <leader>w :w!<CR>
-	map <leader><leader> :q<CR>
+        map <leader>q :q<CR>
 	map <leader><CR> :wq<CR>
         " Quick splitting
         nnoremap <leader>h :split<Space>
@@ -75,18 +82,18 @@
         " Clears the last search
         map <leader><esc> :let @/ = ""<CR>
         " Easy way to comment out lines
-        map <leader>c# :s/^/# / \| let @/ = ""<CR>
-        map <leader>c" :s/^/" / \| let @/ = ""<CR>
-        map <leader>c/ :s/^/\/\/ / \| let @/ = ""<CR>
+        map <leader>3 :s/^/# / \| let @/ = ""<CR>
+        map <leader>' :s/^/" / \| let @/ = ""<CR>
+        map <leader>/ :s/^/\/\/ / \| let @/ = ""<CR>
         " And to uncomment...
-        map <leader>u# :s/^# // \| let @/ = ""<CR>
-        map <leader>u" :s/^" // \| let @/ = ""<CR>
-        map <leader>u/ :s/^\/\/ // \| let @/ = ""<CR>
+        map <leader><leader>3 :s/^# // \| let @/ = ""<CR>
+        map <leader><leader>' :s/^" // \| let @/ = ""<CR>
+        map <leader><leader>/ :s/^\/\/ // \| let @/ = ""<CR>
 
 " Outside Scripts:
         " Compile latex document
-        map <leader>c :w! \| !pdflatex % ./ <CR><CR>
-        " Open corresponding .pdf/.html or preview
+        map <leader>cl :w! \| !pdflatex % ./ <CR><CR>
+        " Open corresponding .pdf/.html
 	map <leader>p :!opout <c-r>%<CR><CR>
         " Latex-Specific Stuff
         autocmd VimLeave *.tex !texclear %
@@ -100,6 +107,3 @@
         let &t_SI = "\<Esc>[6 q"
         let &t_SR = "\<Esc>[4 q"
         let &t_EI = "\<Esc>[2 q"
-
-" Plugins:
-"        let g:airline_powerline_fonts = 0

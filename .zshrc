@@ -1,5 +1,11 @@
+#          _
+#  _______| |__  _ __ ___
+# |_  / __| '_ \| '__/ __|
+#  / /\__ \ | | | | | (__
+# /___|___/_| |_|_|  \___|
+
 ## Source zsh enviornment variables ##
-source .zshenv
+source "$HOME"/.zshenv
 
 ## Enable colors and change prompt: ##
 autoload -U colors && colors
@@ -28,7 +34,7 @@ setopt HIST_EXPIRE_DUPS_FIRST # expire duplicates first
 setopt HIST_IGNORE_DUPS # do not store duplications
 setopt HIST_FIND_NO_DUPS #ignore duplicates when searching
 setopt HIST_REDUCE_BLANKS # removes blank lines from history
-setopt INC_APPEND_HISTORY # adds commands as they are typed, not at shell exit
+#setopt INC_APPEND_HISTORY # adds commands as they are typed, not at shell exit
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
@@ -89,6 +95,7 @@ alias ls="ls --color --group-directories-first"
 alias l="lsd -hA --group-dirs first"
 alias grep='grep --color=auto'
 alias less="less --IGNORE-CASE --LINE-NUMBERS"
+alias v="nvim"
 # Git-related
 alias gs="git status"
 alias ga="git add *"
@@ -104,14 +111,12 @@ alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)
 alias dcs='git --git-dir=$HOME/.dotfiles --work-tree=$HOME status'
 alias dca='git --git-dir=$HOME/.dotfiles --work-tree=$HOME add'
 alias dcd='git --git-dir=$HOME/.dotfiles --work-tree=$HOME diff'
+alias dcp='git --git-dir=$HOME/.dotfiles --work-tree=$HOME push'
 alias dcm='git --git-dir=$HOME/.dotfiles --work-tree=$HOME commit -m'
 
 se() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
 pdf() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $READER ;}
 conf() {du -a ~/.local/* ~/.config/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
 
-#neofetch
-#cowfortune | lolcat
 #figlet suckless
-#alias the_power_of_christ_compels_you!='sudo'
 ufetch.sh
