@@ -23,6 +23,9 @@ Print
 super + Insert
     clipmenu -i -p "Clipboard" -l 20
 
+super + shift + y
+    youtube.sh
+
 ctrl + alt + Delete
     power-management.sh
 

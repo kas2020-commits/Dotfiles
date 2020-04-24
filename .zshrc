@@ -20,8 +20,7 @@ zstyle ':vcs_info:*' enable git
 
 ## Setting prompt ##
 # Left
-PROMPT='%(!.# .)' # adds a '#' to the prompt if running as root
-PROMPT=$PROMPT'%(?.%F{green}.%F{red})━%f ' # Prompt
+PROMPT='%(?.%F{green}.%F{red})━%f ' # Prompt
 # Right
 RPROMPT=\$vcs_info_msg_0_ # Displays branch name of git repo if in one
 RPROMPT=$RPROMPT'%F{green}%1~ ' # Display cwd
@@ -69,7 +68,7 @@ bindkey -v '^?' backward-delete-char
 autoload edit-command-line;zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Change cursor shape for different vi modes.
+## Change cursor shape for different vi modes ##
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
@@ -91,11 +90,14 @@ echo -ne '\e[4 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[4 q' ;} # Use beam shape cursor for each new prompt.
 
 ## Some Aliases ##
+
+# Basic
 alias ls="ls --color --group-directories-first"
 alias l="lsd -hA --group-dirs first"
 alias grep='grep --color=auto'
 alias less="less --IGNORE-CASE --LINE-NUMBERS"
 alias v="nvim"
+
 # Git-related
 alias gs="git status"
 alias ga="git add *"
@@ -114,9 +116,10 @@ alias dcd='git --git-dir=$HOME/.dotfiles --work-tree=$HOME diff'
 alias dcp='git --git-dir=$HOME/.dotfiles --work-tree=$HOME push'
 alias dcm='git --git-dir=$HOME/.dotfiles --work-tree=$HOME commit -m'
 
+# fuzzy finder related functions. Modify to suit your needs.
 se() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
 pdf() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $READER ;}
 conf() {du -a ~/.local/* ~/.config/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
 
-#figlet suckless
+## Autostart ##
 ufetch.sh

@@ -7,23 +7,22 @@
 " Global Rules:
 	set nocompatible "sets no compatible to vi-mode
 	let mapleader =" "
+        set nohlsearch
+"         set hidden
 	syntax on
-	colorscheme peachpuff
-        " Change cterm=NONE to to cterm=bold if you like
-        highlight CursorLine ctermbg=0 cterm=NONE
-        " highlight CursorColumn ctermbg=0 cterm=NONE
+        set number relativenumber
         set mouse=a
 	set encoding=utf-8
         set spelllang=en_us
         set cursorline " Changes the line the cursor is on
         " set cursorcolumn
 	set ruler " Always show cursor location on bottom-right
-	set scrolloff=7 " how many lines does the cursor need as cushion space
+	set scrolloff=4 " how many lines does the cursor need as cushion space
 	let c_comment_strings=1
         set autochdir " Changes directory to the file's dir
         set clipboard+=unnamedplus " tell vim to use main clipboard
 	" Center screen when entering insert mode:
-        autocmd InsertEnter * norm zz
+"         autocmd InsertEnter * norm zz
 	set splitbelow splitright " set splitting to be more normal:
 	set wildmenu " The nice tab completions at the command
 	set ignorecase " Ignore case sensitivity when searching
@@ -31,7 +30,8 @@
 	set lazyredraw " Good for performance when using macros
 	set magic " More search stuff
 	set showmatch " More search stuff
-	set t_Co=16 " Makes vim use the 16 terminal colors only
+"   	set t_Co=16 " Makes vim use the 16 terminal colors only
+        set termguicolors
 	set linebreak " Makes line wrapping better
 	set textwidth=80 " Max line width before linebreak is triggered
 	set wrap " same as linebreak but uses terminal width
@@ -40,6 +40,16 @@
         set path+=**
         set hidden
         set wildignore+=**/node_modules/**
+
+" Plugins:
+         source $HOME/.config/nvim/plugs/tabline.vim
+"         source $HOME/.config/nvim/plugs/buftabline.vim
+        "
+        source $HOME/.config/nvim/plugs/colorizer.vim
+        lua require'colorizer'.setup()
+        "
+        source $HOME/.config/nvim/colors/onedark.vim
+        source $HOME/.config/nvim/plugs/startify.vim
 
 " Fileype Specific:
         autocmd BufWritePost *Xresources !xrdb % " Auto reload the Xresources
@@ -52,43 +62,53 @@
         " This option is set automatically in all C buffers: set cindent
         " Soft tab setup
         set expandtab
-        set shiftwidth=4
-        set softtabstop=4
+        set shiftwidth=8
+        set softtabstop=8
         " Hard tab setup
         "set tabstop=4
 
 " Keybinds:
-        nnoremap Y y$
-	" for writing out and closing
+	" Write To Disk:
 	map <leader>w :w!<CR>
         map <leader>q :q<CR>
-	map <leader><CR> :wq<CR>
-        " Quick splitting
-        nnoremap <leader>h :split<Space>
-        nnoremap <leader>v :vsplit<Space>
-	" Set spellcheck on or off:
+        map <leader><CR> :wq<CR>
+        " Tab Management:
+        nnoremap <leader>h :Sexplore<CR>
+        nnoremap <leader>v :Vexplore<CR>
+        nnoremap <m-t>     :tabnew \| Startify<CR>
+        nnoremap <m-w>     :tabclose<CR>
+	" Set Spellcheck:
 	map <leader>o :setlocal spell! spelllang=en_us<CR>
-	" Setting and unsetting relative numberline:
+	" Setting Relative Numberline:
 	map <leader>nl :setlocal number<CR>
 	map <leader>nk :setlocal number relativenumber<CR>
 	map <leader>nj :setlocal norelativenumber \| setlocal nonumber<CR>
-	" Shortcutting split navigation:
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
-        " Reindent the whole file (this will force the tab layout outlined above)
-        map <C-i> gg=G<C-o>
-        " Clears the last search
+	" Navigation:
+        map <C-h> <C-w>h
+        map <C-j> <C-w>j
+        map <C-k> <C-w>k
+        map <C-l> <C-w>l
+        nnoremap <m-h> :tabnext<CR>
+        nnoremap <m-l> :tabprev<CR>
+        nnoremap <m-k> <C-u>
+        nnoremap <m-j> <C-d>
+        " Reindent File:
+        map <m-i> gg=G<C-o>
+        " Clears The Last Search:
         map <leader><esc> :let @/ = ""<CR>
-        " Easy way to comment out lines
+        " Comment Lines:
         map <leader>3 :s/^/# / \| let @/ = ""<CR>
         map <leader>' :s/^/" / \| let @/ = ""<CR>
         map <leader>/ :s/^/\/\/ / \| let @/ = ""<CR>
-        " And to uncomment...
-        map <leader><leader>3 :s/^# // \| let @/ = ""<CR>
-        map <leader><leader>' :s/^" // \| let @/ = ""<CR>
-        map <leader><leader>/ :s/^\/\/ // \| let @/ = ""<CR>
+        map <leader>s *# :%s//
+        " Buffer Management:
+        map <leader>bb :ls<CR>
+        map <leader>bd :bdelete<CR>
+        map <leader>bn :bnext<CR>
+        map <leader>bp :bprev<CR>
+        map <leader>bq :bufdo bd \| Startify<CR>
+        " Misc:
+        nnoremap Y y$
 
 " Outside Scripts:
         " Compile latex document
@@ -98,12 +118,45 @@
         " Latex-Specific Stuff
         autocmd VimLeave *.tex !texclear %
 
-" Statusline Config:
-        set laststatus=1
-	set statusline=[%n]\ %<%F\ \ \ [%M%R%H%W%Y][%{&ff}]\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%
-        hi statusline ctermfg=8 ctermbg=2 " for some reason fg and bg are swapped.
+" Statusline Config: (set laststatus to 2 to always see the statusline)
+        set laststatus=2
+        set showtabline=2
+	set statusline=\%<%F\ \ \ [%M%R%H%W%Y][%{&ff}]\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%
 
-" Changes cursor shape depending on what mode you're in (only needed for non-neovim)
+" Cursor:
         let &t_SI = "\<Esc>[6 q"
         let &t_SR = "\<Esc>[4 q"
-        let &t_EI = "\<Esc>[2 q"
+        let &t_EI = "\<Esc>[1 q"
+
+" Color Stuff:
+        highlight CursorLine ctermbg=0 cterm=NONE guibg=#222222
+        highlight CursorColumn ctermbg=0 cterm=NONE
+        hi statusline   ctermfg=Green  ctermbg=DarkGray  cterm=NONE  guibg=#222222  guifg=#008ae6
+        hi TabLine      ctermfg=Black  ctermbg=DarkGray  cterm=NONE  guibg=#404040  guifg=#bbbbbb
+        hi TabLineFill  ctermfg=Black  ctermbg=DarkGray  cterm=NONE  guibg=#222222  guifg=#aaaaaa
+        hi TabLineSel   ctermfg=White  ctermbg=DarkBlue  cterm=NONE  guibg=#008ae6  guifg=#ffffff
+
+
+" Small function that, when in visual mode, will rotate between full uppercase,
+" full lowercase, or title-case.
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
+" Plugins:
+        let g:startify_custom_header =
+                                \ [
+                                \ '     _   __                _         ',
+                                \ '    / | / /__  ____ _   __(_)___ ___ ',
+                                \ '   /  |/ / _ \/ __ \ | / / / __ `__ \',
+                                \ '  / /|  /  __/ /_/ / |/ / / / / / / /',
+                                \ ' /_/ |_/\___/\____/|___/_/_/ /_/ /_/ ',
+                                \ ]

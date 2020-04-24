@@ -2,7 +2,7 @@
 
 choices="reboot\nshutdown\nsuspend\nhibernate"
 
-chosen=$(echo -e "$choices" | dmenu -i)
+chosen=$(echo -e "$choices" | dmenu -i -p "Power Manager")
 
 case "$chosen" in
     reboot) systemctl reboot;;
