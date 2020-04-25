@@ -5,6 +5,7 @@ export EDITOR="nvim"
 export READER="zathura"
 export FILE="nnn"
 export TERMINAL="st"
+# export TERMINAL="alacritty"
 export TERM="st"
 export BROWSER="firefox"
 export VIDEO="mpv"
@@ -26,3 +27,5 @@ export PATH=$PATH:/usr/bin/core_perl
 ## Command options ##
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 # export YOUTUBE_DOWNLOADS_FOLDER="$HOME"/Movies/youtube
+
+export DIR_COLORS_TEMPLATE="$HOME"/.config/dir_colors

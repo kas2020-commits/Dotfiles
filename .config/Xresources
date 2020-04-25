@@ -1,25 +1,130 @@
-! Dracula Xresources palette
-! .foreground: #F8F8F2
-! .background: #282A36
-! .color0:     #000000
-! .color8:     #4D4D4D
-! .color1:     #FF5555
-! .color9:     #FF6E67
-! .color2:     #50FA7B
-! .color10:    #5AF78E
-! .color3:     #F1FA8C
-! .color11:    #F4F99D
-! .color4:     #BD93F9
-! .color12:    #CAA9FA
-! .color5:     #FF79C6
-! .color13:    #FF92D0
-! .color6:     #8BE9FD
-! .color14:    #9AEDFE
-! .color7:     #BFBFBF
-! .color15:    #E6E6E6
+!-------------------------------------- Colors -------------------------------!
+/* ! Dracula Xresources palette */
+/* *.foreground: #F8F8F2 */
+/* *.background: #282A36 */
+/* *.color0:     #000000 */
+/* *.color8:     #4D4D4D */
+/* *.color1:     #FF5555 */
+/* *.color9:     #FF6E67 */
+/* *.color2:     #50FA7B */
+/* *.color10:    #5AF78E */
+/* *.color3:     #F1FA8C */
+/* *.color11:    #F4F99D */
+/* *.color4:     #BD93F9 */
+/* *.color12:    #CAA9FA */
+/* *.color5:     #FF79C6 */
+/* *.color13:    #FF92D0 */
+/* *.color6:     #8BE9FD */
+/* *.color14:    #9AEDFE */
+/* *.color7:     #BFBFBF */
+/* *.color15:    #E6E6E6 */
+
+/* !! solarized */
+/* *.foreground:   #93a1a1 */
+/* *.background:   #002b36 */
+/* *.cursorColor:  #93a1a1 */
+/* *.color0:       #002b36 */
+/* *.color8:       #657b83 */
+/* *.color1:       #dc322f */
+/* *.color9:       #dc322f */
+/* *.color2:       #859900 */
+/* *.color10:      #859900 */
+/* *.color3:       #b58900 */
+/* *.color11:      #b58900 */
+/* *.color4:       #268bd2 */
+/* *.color12:      #268bd2 */
+/* *.color5:       #6c71c4 */
+/* *.color13:      #6c71c4 */
+/* *.color6:       #2aa198 */
+/* *.color14:      #2aa198 */
+/* *.color7:       #93a1a1 */
+/* *.color15:      #fdf6e3 */
+
+/* !! Google Dark */
+/* *.foreground:   #c5c8c6 */
+/* *.background:   #1d1f21 */
+/* *.cursorColor:  #c5c8c6 */
+/* *.color0:       #1d1f21 */
+/* *.color8:       #969896 */
+/* *.color1:       #cc342b */
+/* *.color9:       #cc342b */
+/* *.color2:       #198844 */
+/* *.color10:      #198844 */
+/* *.color3:       #fba922 */
+/* *.color11:      #fba922 */
+/* *.color4:       #3971ed */
+/* *.color12:      #3971ed */
+/* *.color5:       #a36ac7 */
+/* *.color13:      #a36ac7 */
+/* *.color6:       #3971ed */
+/* *.color14:      #3971ed */
+/* *.color7:       #c5c8c6 */
+/* *.color15:      #ffffff */
+
+/* !! Gruvbox */
+/* *.foreground:   #ebdbb2 */
+/* *.background:   #282828 */
+/* *.cursorColor:  #c5c8c6 */
+/* *.color0:       #282828 */
+/* *.color8:       #928374 */
+/* *.color1:       #cc241d */
+/* *.color9:       #fb4934 */
+/* *.color2:       #98971a */
+/* *.color10:      #b8bb26 */
+/* *.color3:       #d79921 */
+/* *.color11:      #fabd2f */
+/* *.color4:       #458588 */
+/* *.color12:      #83a598 */
+/* *.color5:       #b16286 */
+/* *.color13:      #d3869b */
+/* *.color6:       #689d6a */
+/* *.color14:      #8ec07c */
+/* *.color7:       #a89984 */
+/* *.color15:      #ebdbb2 */
+
+!! Nord Theme
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
+*.foreground:   nord4
+*.background:   nord0
+*.cursorColor:  nord4
+*fading: 35
+*fadeColor: nord3
+*.color0: nord1
+*.color1: nord11
+*.color2: nord14
+*.color3: nord13
+*.color4: nord9
+*.color5: nord15
+*.color6: nord8
+*.color7: nord5
+*.color8: nord3
+*.color9: nord11
+*.color10: nord14
+*.color11: nord13
+*.color12: nord9
+*.color13: nord15
+*.color14: nord7
+*.color15: nord6
+
+!-----------------------------------------------------------------------------!
 
 !! urxvt settings !!
-urxvt.background: [90]#00001a
+!urxvt.background: [90]#00001a
 urxvt.scrollBar: false
 urxvt.font: xft:Dejavu Sans Mono:style=Regular:pixelsize=20
 !urxvt.cursorUnderline: false
@@ -31,7 +136,7 @@ URxvt.iso14755:            false
 URxvt.iso14755_52:         falseurxvt.cursorBlink: 1
 
 !! st-specifics
-!st.alpha: 0.9
-!st.font: DejaVu Sans Mono:style=Regular:pixelsize=20:antialias=true:autohint=true
-!st.fontalt0: Inconsolata:style=Regular:pixelsize=16:antialias=true:autohint=true
-!st.background: #00001a
+! st.alpha: 0.95
+st.alpha: 1.0
+st.font: DejaVu Sans Mono:style=Regular:pixelsize=17:antialias=true:autohint=true
+st.fontalt0: JoyPixels:pixelsize=10:antialias=true:autohint=true

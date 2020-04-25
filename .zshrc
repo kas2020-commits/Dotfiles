@@ -9,6 +9,7 @@ source "$HOME"/.zshenv
 
 ## Enable colors and change prompt: ##
 autoload -U colors && colors
+test -r "$DIR_COLORS_TEMPLATE" && eval $(dircolors "$DIR_COLORS_TEMPLATE")
 
 ## Git Integration ##
 autoload -Uz vcs_info
@@ -20,7 +21,7 @@ zstyle ':vcs_info:*' enable git
 
 ## Setting prompt ##
 # Left
-PROMPT='%(?.%F{green}.%F{red})━%f ' # Prompt
+PROMPT='%(?.%F{green}.%F{red})$%f ' # ━is an alternative prompt
 # Right
 RPROMPT=\$vcs_info_msg_0_ # Displays branch name of git repo if in one
 RPROMPT=$RPROMPT'%F{green}%1~ ' # Display cwd
@@ -122,4 +123,4 @@ pdf() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $READER 
 conf() {du -a ~/.local/* ~/.config/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
 
 ## Autostart ##
-ufetch.sh
+# ufetch.sh
