@@ -22,6 +22,7 @@
 	set splitbelow splitright " set splitting to be more normal:
  	set lazyredraw " Good for performance when using macros
 	set showmatch " More search stuff
+        " set t_Co=256
         set termguicolors " Tell vim to use truecolor support
 	set linebreak " Makes line wrapping better
 	set textwidth=80 " Max line width before linebreak is triggered
@@ -32,7 +33,8 @@
 
 " Load Plugins:
         call plug#begin()
-                Plug 'gruvbox-community/gruvbox'
+                " Plug 'gruvbox-community/gruvbox'
+                Plug 'joshdick/onedark.vim'
                 Plug 'kien/ctrlp.vim'
                 Plug 'mhinz/vim-startify'
                 Plug 'norcalli/nvim-colorizer.lua'
@@ -40,8 +42,8 @@
                 Plug 'tpope/vim-commentary'
         call plug#end()
         lua require'colorizer'.setup()
-        colorscheme gruvbox
         set background=dark
+        colorscheme onedark
 
 " Autocomplete Related:
 	set wildmenu " The nice tab completions at the command
@@ -65,8 +67,6 @@
 " Keybinds:
 	" Write To Disk:
 	noremap <leader>w :w!<CR>
-        noremap <leader>q :q<CR>
-        noremap <leader><CR> :wq<CR>
 	" Set Spellcheck:
 	noremap <leader>o :setlocal spell! spelllang=en_us<CR>
 	" Navigation:
@@ -102,8 +102,8 @@
         autocmd VimLeave *.tex !texclear %
 
 " Statusline: (set laststatus to 2 to always see the statusline)
+        " set showtabline=1
         set laststatus=1
-        set showtabline=1
 	set statusline=\%<%F\ \ \ [%M%R%H%W%Y][%{&ff}]\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%
 
 " Functions:
@@ -122,7 +122,7 @@ endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
 " Plugin Customization:
-"         let g:startify_change_to_dir = 0
+        " let g:startify_change_to_dir = 0
         let g:startify_custom_header =
                                 \ [
                                 \ '     _   __                _         ',

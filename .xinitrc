@@ -4,7 +4,7 @@ userresources=$HOME/.config/Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
-xprofile=$HOME/.xprofile
+xprofile=$HOME/.config/xprofile
 
 # merge in defaults and keymaps
 

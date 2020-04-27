@@ -5,7 +5,7 @@
 # /___|___/_| |_|_|  \___|
 
 ## Source zsh enviornment variables ##
-source "$HOME"/.zshenv
+source "$HOME"/.config/zshenv
 
 ## Enable colors and change prompt: ##
 autoload -U colors && colors
@@ -65,36 +65,34 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-## Edit cmdline in vim with control+e ##
-autoload edit-command-line;zle -N edit-command-line
-bindkey '^e' edit-command-line
-
 ## Change cursor shape for different vi modes ##
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[4 q'
-  fi
-}
-zle -N zle-keymap-select
+# function zle-keymap-select {
+#   if [[ ${KEYMAP} == vicmd ]] ||
+#      [[ $1 = 'block' ]]; then
+#     echo -ne '\e[1 q'
+#   elif [[ ${KEYMAP} == main ]] ||
+#        [[ ${KEYMAP} == viins ]] ||
+#        [[ ${KEYMAP} = '' ]] ||
+#        [[ $1 = 'beam' ]]; then
+#     echo -ne '\e[4 q'
+#   fi
+# }
+# zle -N zle-keymap-select
+
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     echo -ne "\e[4 q"
 }
 zle -N zle-line-init
-echo -ne '\e[4 q' # Use beam shape cursor on startup.
+
+# echo -ne '\e[4 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[4 q' ;} # Use beam shape cursor for each new prompt.
 
 ## Some Aliases ##
 
 # Basic
-alias ls="ls --color --group-directories-first"
-alias l="lsd -hA --group-dirs first"
+# alias ls="ls --hyperlink=always --color --group-directories-first"
+alias ls="exa -a --icons --group-directories-first"
+alias lsd="lsd -hA --group-dirs first"
 alias grep='grep --color=auto'
 alias less="less --IGNORE-CASE --LINE-NUMBERS"
 alias v="nvim"
@@ -111,16 +109,10 @@ alias mem-eaters='ps axch -o cmd:15,%mem --sort=-%mem | head'
 alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)\nMEM HOGGS:\n$(ps axch -o cmd:15,%mem --sort=-%mem | sed 3q)"'
 
 # Dotfiles Manager (for bare repo)
-alias dcs='git --git-dir=$HOME/.dotfiles --work-tree=$HOME status'
-alias dca='git --git-dir=$HOME/.dotfiles --work-tree=$HOME add'
-alias dcd='git --git-dir=$HOME/.dotfiles --work-tree=$HOME diff'
-alias dcp='git --git-dir=$HOME/.dotfiles --work-tree=$HOME push'
-alias dcm='git --git-dir=$HOME/.dotfiles --work-tree=$HOME commit -m'
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # fuzzy finder related functions. Modify to suit your needs.
 se() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
 pdf() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $READER ;}
 conf() {du -a ~/.local/* ~/.config/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
-
-## Autostart ##
-# ufetch.sh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

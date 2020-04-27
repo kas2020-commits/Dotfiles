@@ -7,6 +7,6 @@ chosen=$(echo -e "$choices" | dmenu -i -p "Power Manager")
 case "$chosen" in
     reboot) systemctl reboot;;
     shutdown) systemctl poweroff;;
-    suspend) systemctl suspend;;
-    hibernate) systemctl hibernate;;
+    suspend) "$HOME"/.config/i3lock/beut.sh ; systemctl suspend;;
+    hibernate)"$HOME"/.config/i3lock/beut.sh ; systemctl hibernate;;
 esac
