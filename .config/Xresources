@@ -167,10 +167,10 @@
 !! urxvt settings !!
 !urxvt.background: [90]#00001a
 urxvt.scrollBar: false
-urxvt.font: xft:Dejavu Sans Mono:style=Regular:pixelsize=20
-!urxvt.cursorUnderline: false
+urxvt.font: xft:Fira Code Medium:style=Medium:pixelsize=20
+urxvt.cursorUnderline: false
 urxvt.letterSpace: -1
-urxvt.cursorBlink: false
+urxvt.cursorBlink: true
 urxvt.depth: 32
 ! Disable the stupid ctrl+shift 'feature'
 URxvt.iso14755:            false

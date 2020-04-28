@@ -109,7 +109,7 @@ alias mem-eaters='ps axch -o cmd:15,%mem --sort=-%mem | head'
 alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)\nMEM HOGGS:\n$(ps axch -o cmd:15,%mem --sort=-%mem | sed 3q)"'
 
 # Dotfiles Manager (for bare repo)
-alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias dootfiles='git --git-dir="$HOME"/.local/github/dootfiles --work-tree=$HOME'
 
 # fuzzy finder related functions. Modify to suit your needs.
 se() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $EDITOR ;}

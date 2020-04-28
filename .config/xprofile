@@ -1,8 +1,8 @@
 #!/bin/dash
 
-picom -CGb --experimental-backends -o 0 --refresh-rate 75 --backend glx --no-fading-openclose &
+# picom -CGb --experimental-backends -o 0 --refresh-rate 75 --backend glx --no-fading-openclose &
 dwmbar &
 clipmenud &
 sxhkd &
-xset r rate 200 40 &
+xset r rate 150 45 &
 xwallpaper --center "$HOME"/Pictures/Wallpapers/penguins.jpg &

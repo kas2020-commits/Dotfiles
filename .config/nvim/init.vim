@@ -16,7 +16,7 @@
         set spelllang=en_us
         set cursorline " Changes the line the cursor is on
 	set ruler " Always show cursor location on bottom-right
-	set scrolloff=4 " how many lines does the cursor need as cushion space
+	set scrolloff=5 " how many lines does the cursor need as cushion space
 	let c_comment_strings=1
         set clipboard+=unnamedplus " tell vim to use main clipboard
 	set splitbelow splitright " set splitting to be more normal:
@@ -30,16 +30,19 @@
         set updatetime=50
         set colorcolumn=80
 	autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
+        set noshowmode
 
 " Load Plugins:
         call plug#begin()
                 " Plug 'gruvbox-community/gruvbox'
+                " Plug 'kien/ctrlp.vim'
+                Plug 'itchyny/lightline.vim'
                 Plug 'joshdick/onedark.vim'
-                Plug 'kien/ctrlp.vim'
                 Plug 'mhinz/vim-startify'
                 Plug 'norcalli/nvim-colorizer.lua'
                 Plug 'ap/vim-buftabline'
                 Plug 'tpope/vim-commentary'
+                Plug 'mcchrish/nnn.vim'
         call plug#end()
         lua require'colorizer'.setup()
         set background=dark
@@ -66,6 +69,7 @@
 
 " Keybinds:
 	" Write To Disk:
+        noremap <leader>q :q<CR>
 	noremap <leader>w :w!<CR>
 	" Set Spellcheck:
 	noremap <leader>o :setlocal spell! spelllang=en_us<CR>
@@ -89,21 +93,17 @@
         noremap <leader><leader> :Startify<CR>
         noremap <leader>bd :bdelete<CR>
         noremap <leader>bq :bufdo bd \| Startify<CR>
-        noremap <leader>e :Explore<CR>
         " Misc:
         nnoremap Y y$
 
 " Outside Scripts:
-        " Compile latex document
         noremap <leader>cl :w! \| !pdflatex % ./ <CR><CR>
-        " Open corresponding .pdf/.html
 	noremap <leader>p :!opout <c-r>%<CR><CR>
-        " Latex-Specific Stuff
         autocmd VimLeave *.tex !texclear %
 
 " Statusline: (set laststatus to 2 to always see the statusline)
-        " set showtabline=1
-        set laststatus=1
+        set showtabline=0
+        set laststatus=2
 	set statusline=\%<%F\ \ \ [%M%R%H%W%Y][%{&ff}]\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%
 
 " Functions:
@@ -122,7 +122,11 @@ endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 
 " Plugin Customization:
-        " let g:startify_change_to_dir = 0
+        let g:nnn#set_default_mappings = 0
+        nnoremap <silent> <leader>n :NnnPicker<CR>
+        let g:lightline = {
+                \ 'colorscheme': 'onedark',
+                \ }
         let g:startify_custom_header =
                                 \ [
                                 \ '     _   __                _         ',
@@ -131,3 +135,4 @@ vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
                                 \ '  / /|  /  __/ /_/ / |/ / / / / / / /',
                                 \ ' /_/ |_/\___/\____/|___/_/_/ /_/ /_/ ',
                                 \ ]
+        " let g:startify_change_to_dir = 0
