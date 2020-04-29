@@ -4,9 +4,6 @@
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
 
-## Source zsh enviornment variables ##
-source "$HOME"/.config/zshenv
-
 ## Enable colors and change prompt: ##
 autoload -U colors && colors
 test -r "$DIR_COLORS_TEMPLATE" && eval $(dircolors "$DIR_COLORS_TEMPLATE")
