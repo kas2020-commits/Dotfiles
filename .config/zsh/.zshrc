@@ -81,15 +81,11 @@ zle-line-init() {
 }
 zle -N zle-line-init
 
-# echo -ne '\e[4 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[4 q' ;} # Use beam shape cursor for each new prompt.
-
 ## Some Aliases ##
 
 # Basic
 # alias ls="ls --hyperlink=always --color --group-directories-first"
-alias ls="exa -a --icons --group-directories-first"
-alias lsd="lsd -hA --group-dirs first"
+alias l="exa -a --icons --group-directories-first"
 alias grep='grep --color=auto'
 alias less="less --IGNORE-CASE --LINE-NUMBERS"
 alias v="nvim"
@@ -109,7 +105,6 @@ alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)
 alias dootfiles='git --git-dir="$HOME"/.local/github/dootfiles --work-tree=$HOME'
 
 # fuzzy finder related functions. Modify to suit your needs.
-se() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
 pdf() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $READER ;}
 conf() {du -a ~/.local/* ~/.config/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

@@ -7,7 +7,9 @@ export FILE="nnn"
 # export TERMINAL="st"
 # export TERM="st"
 export TERMINAL="alacritty"
-export TERM="alacritty"
+export TERN="alacritty"
+export TERMINAL_ALT="alacritty"
+export TERM_ALT="alacritty"
 export BROWSER="firefox"
 export VIDEO="mpv"
 #export COLORTERM="truecolor"
@@ -18,8 +20,6 @@ export xport XDG_CONFIG_HOME="$HOME/.config"
 export LESSHISTFILE="-"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
-
-
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8

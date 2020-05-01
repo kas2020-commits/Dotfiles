@@ -3,13 +3,13 @@ super + Return
     $TERMINAL
 
 super + shift + Return
-    $TERMINAL -e nvim
+    $TERM_ALT -e nvim
 
 super + m
-    $TERMINAL -e cmus
+    $TERM -e cmus
 
 super + r
-    $TERMINAL -e $FILE
+    $TERM -e $FILE
 
 super + shift + w
     $BROWSER

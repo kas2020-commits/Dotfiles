@@ -31,11 +31,14 @@
         set colorcolumn=80
 	autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
         set noshowmode
+        set autochdir
 
 " Load Plugins:
         call plug#begin()
                 " Plug 'gruvbox-community/gruvbox'
                 " Plug 'kien/ctrlp.vim'
+                " Plug 'jreybert/vimagit'
+                " Plug 'airblade/vim-gitgutter'
                 Plug 'itchyny/lightline.vim'
                 Plug 'joshdick/onedark.vim'
                 Plug 'mhinz/vim-startify'

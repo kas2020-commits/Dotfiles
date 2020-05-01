@@ -1,8 +1,9 @@
 #!/bin/dash
 
 # picom -CGb --experimental-backends -o 0 --refresh-rate 75 --backend glx --no-fading-openclose &
+# nvidia-settings --config="$XDG_CONFIG_HOME/nvidia-settings-rc" &
 dwmbar &
 clipmenud &
 sxhkd &
-xset r rate 150 45 &
-xwallpaper --center "$HOME"/Pictures/Wallpapers/penguins.jpg &
+xset r rate 200 50 &
+xwallpaper --center "$HOME"/Pictures/Wallpapers/Wall.png &
