@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/sh
 #
 # ufetch-arch - tiny system info for arch
 

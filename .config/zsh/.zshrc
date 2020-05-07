@@ -84,9 +84,10 @@ zle -N zle-line-init
 ## Some Aliases ##
 
 # Basic
-# alias ls="ls --hyperlink=always --color --group-directories-first"
+alias ls="ls --hyperlink=always --color --group-directories-first"
 alias l="exa -a --icons --group-directories-first"
-alias grep='grep --color=auto'
+# alias grep='grep --color=auto'
+alias grep="rg"
 alias less="less --IGNORE-CASE --LINE-NUMBERS"
 alias v="nvim"
 
@@ -107,4 +108,7 @@ alias dootfiles='git --git-dir="$HOME"/.local/github/dootfiles --work-tree=$HOME
 # fuzzy finder related functions. Modify to suit your needs.
 pdf() {du -a  ~/Downloads/*  ~/Documents/* | cut -f 2- | fzf | xargs -r $READER ;}
 conf() {du -a ~/.local/* ~/.config/* | cut -f 2- | fzf | xargs -r $EDITOR ;}
+
+# Load; Should be last
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null

@@ -4,12 +4,13 @@ super + Return
 
 super + shift + Return
     $TERM_ALT -e nvim
+	# gvim
 
 super + m
-    $TERM -e cmus
+    $TERMINAL -e cmus
 
 super + r
-    $TERM -e $FILE
+    $TERMINAL -e $FILE
 
 super + shift + w
     $BROWSER
