@@ -1,6 +1,6 @@
 #!/bin/sh
 
-picom -CGb --experimental-backends -o 0 --refresh-rate 75 --backend glx --no-fading-openclose &
+# picom -CGb --experimental-backends -o 0 --refresh-rate 75 --backend glx --no-fading-openclose &
 # nvidia-settings --config="$XDG_CONFIG_HOME/nvidia-settings-rc" &
 dwmbar &
 clipmenud &

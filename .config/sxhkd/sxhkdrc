@@ -3,8 +3,7 @@ super + Return
     $TERMINAL
 
 super + shift + Return
-    $TERM_ALT -e nvim
-	# gvim
+    $TERMINAL -e nvim
 
 super + m
     $TERMINAL -e cmus
