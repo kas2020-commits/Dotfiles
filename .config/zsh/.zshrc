@@ -18,7 +18,7 @@ zstyle ':vcs_info:*' enable git
 
 ## Setting prompt ##
 # Left
-PROMPT='%(?.%F{green}.%F{red})━%f ' # ━❯ is an alternative prompt
+PROMPT='%(?.%F{green}.%F{red})❯%f ' # ━❯ is an alternative prompt
 # Right
 RPROMPT=\$vcs_info_msg_0_ # Displays branch name of git repo if in one
 RPROMPT=$RPROMPT'%F{green}%1~ ' # Display cwd
