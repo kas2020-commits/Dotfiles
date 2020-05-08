@@ -15,7 +15,8 @@ super + shift + w
     $BROWSER
 
 super + p
-    dmenu_run -i -p "Run"
+	rofi -show drun
+    # dmenu_run -i -p "Run"
 
 ctrl + alt + l
     $HOME/.config/i3lock/beut.sh

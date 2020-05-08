@@ -1,9 +1,10 @@
 #!/bin/sh
 
-# picom -CGb --experimental-backends -o 0 --refresh-rate 75 --backend glx --no-fading-openclose &
+picom -b --experimental-backends  --refresh-rate 75 --backend glx --no-fading-openclose &
+# Other Picom toggles: -o 0 --vsync
 # nvidia-settings --config="$XDG_CONFIG_HOME/nvidia-settings-rc" &
 dwmbar &
 clipmenud &
 sxhkd &
 xset r rate 200 50 &
-xwallpaper --center "$HOME"/Pictures/Wallpapers/Wall.png &
+xwallpaper --zoom "$HOME"/Pictures/Wallpapers/Wall.png &

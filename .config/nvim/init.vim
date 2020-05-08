@@ -12,8 +12,6 @@
         set scrolloff=5 " how many lines does the cursor need as cushion space
         set clipboard=unnamedplus
         set splitbelow splitright " set splitting to be more normal:
-        set lazyredraw " Good for performance when using macros
-        set showmatch " More search stuff
         set termguicolors " Tell vim to use truecolor support
         set linebreak " Makes line wrapping better
         set textwidth=80 " Max line width before linebreak is triggered
@@ -28,7 +26,7 @@
 " Load Plugins:
         call plug#begin()
             " Themes:
-                Plug 'gruvbox-community/gruvbox'
+                " Plug 'gruvbox-community/gruvbox'
 				Plug 'arcticicestudio/nord-vim'
             " Assthetic:
                 Plug 'norcalli/nvim-colorizer.lua'
@@ -43,7 +41,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocomplete Related:
         set wildmenu " The nice tab completions at the command
-		set wildmode=longest:full
+		set wildmode=full
         set ignorecase " Ignore case sensitivity when searching
         set smartcase " Tries to be smart about searching
         set hidden
@@ -71,17 +69,16 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keybinds:
 		" Plugin:
-		noremap <leader>u :UndotreeToggle<CR>
+		noremap <silent> <leader>u :UndotreeToggle<CR>
 		noremap <leader><CR> :term<CR>a
 		noremap <m-Space> :find<Space>
 		noremap <m-p> :Ex<CR>
-		noremap <leader><leader> :b<Space>
 		" Window Management:
-		noremap <C-c> :wincmd c<CR>
-		noremap <C-h> :wincmd h<CR>
-		noremap <C-j> :wincmd j<CR>
-		noremap <C-k> :wincmd k<CR>
-		noremap <C-l> :wincmd l<CR>
+		noremap <silent> <C-c> :wincmd c<CR>
+		noremap <silent> <C-h> :wincmd h<CR>
+		noremap <silent> <C-j> :wincmd j<CR>
+		noremap <silent> <C-k> :wincmd k<CR>
+		noremap <silent> <C-l> :wincmd l<CR>
 		nnoremap <silent> <Left>  :vertical resize +2<CR>
 		nnoremap <silent> <Right> :vertical resize -2<CR>
 		nnoremap <silent> <Down>  :resize +2<CR>
@@ -91,9 +88,9 @@
         " Reindent File:
         noremap <leader>i gg=G<C-o>
         " Buffer Management:
-        noremap <m-q> :bdelete<CR>
-        noremap <m-l> :bnext<CR>
-        noremap <m-h> :bprev<CR>
+        noremap <silent> <m-q> :bdelete<CR>
+        noremap <silent> <m-l> :bnext<CR>
+        noremap <silent> <m-h> :bprev<CR>
         " Misc:
         nnoremap Y y$
         noremap <m-k> <C-u>
@@ -113,8 +110,7 @@
         noremap <leader>p :!opout <c-r>%<CR><CR>
         autocmd VimLeave *.tex !texclear %
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Statusline: (set laststatus to 2 to always see the statusline)
-        set showtabline=1
+" Statusline:
         set laststatus=1
 		set statusline=
         set statusline+=%f\ \ \ [%M%R%H%W%Y][%{&ff}]\ \ %=\ line:%l/%L\ col:%c

@@ -18,7 +18,7 @@ zstyle ':vcs_info:*' enable git
 
 ## Setting prompt ##
 # Left
-PROMPT='%(?.%F{green}.%F{red})❯%f ' # ━is an alternative prompt
+PROMPT='%(?.%F{green}.%F{red})━%f ' # ━❯ is an alternative prompt
 # Right
 RPROMPT=\$vcs_info_msg_0_ # Displays branch name of git repo if in one
 RPROMPT=$RPROMPT'%F{green}%1~ ' # Display cwd
@@ -85,7 +85,7 @@ bindkey -v '^?' backward-delete-char
 
 # Basic
 alias ls="ls --hyperlink=always --color --group-directories-first"
-alias l="exa -l -a --icons --group-directories-first"
+alias l="ls -l -A --color --group-directories-first"
 alias gr="rg"
 alias less="less --IGNORE-CASE --LINE-NUMBERS"
 alias v="nvim"
