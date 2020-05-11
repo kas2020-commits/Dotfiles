@@ -13,6 +13,7 @@
         set clipboard=unnamedplus
         set splitbelow splitright " set splitting to be more normal:
         set termguicolors " Tell vim to use truecolor support
+		" set t_Co=256
         set linebreak " Makes line wrapping better
         set textwidth=80 " Max line width before linebreak is triggered
         set wrap " same as linebreak but uses terminal width
@@ -26,8 +27,8 @@
 " Load Plugins:
         call plug#begin()
             " Themes:
-                " Plug 'gruvbox-community/gruvbox'
-				Plug 'arcticicestudio/nord-vim'
+                Plug 'gruvbox-community/gruvbox'
+				" Plug 'arcticicestudio/nord-vim'
             " Assthetic:
                 Plug 'norcalli/nvim-colorizer.lua'
                 Plug 'ap/vim-buftabline'
@@ -37,7 +38,8 @@
 				Plug 'mbbill/undotree'
         call plug#end()
         lua require'colorizer'.setup()
-        colorscheme nord
+		let g:gruvbox_contrast_dark='hard'
+        colorscheme gruvbox
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocomplete Related:
         set wildmenu " The nice tab completions at the command
@@ -55,6 +57,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileype Specific:
         autocmd BufWritePost *Xresources !xrdb %
+		autocmd BufWritePost init.vim source %
         autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation:
@@ -74,11 +77,11 @@
 		noremap <m-Space> :find<Space>
 		noremap <m-p> :Ex<CR>
 		" Window Management:
-		noremap <silent> <C-c> :wincmd c<CR>
-		noremap <silent> <C-h> :wincmd h<CR>
-		noremap <silent> <C-j> :wincmd j<CR>
-		noremap <silent> <C-k> :wincmd k<CR>
-		noremap <silent> <C-l> :wincmd l<CR>
+		noremap <silent> <leader>c :wincmd c<CR>
+		noremap <silent> <leader>h :wincmd h<CR>
+		noremap <silent> <leader>j :wincmd j<CR>
+		noremap <silent> <leader>k :wincmd k<CR>
+		noremap <silent> <leader>l :wincmd l<CR>
 		nnoremap <silent> <Left>  :vertical resize +2<CR>
 		nnoremap <silent> <Right> :vertical resize -2<CR>
 		nnoremap <silent> <Down>  :resize +2<CR>
@@ -96,8 +99,8 @@
         noremap <m-k> <C-u>
         noremap <m-j> <C-d>
 		nnoremap Q <nop>
+		nnoremap Q :q<CR>
         noremap <leader>w :w!<CR>
-		noremap <leader>q :q<CR>
         noremap <leader>o :setlocal spell! spelllang=en_us<CR>
 		" Shift Text:
 		xnoremap K :move '<-2<CR>gv-gv

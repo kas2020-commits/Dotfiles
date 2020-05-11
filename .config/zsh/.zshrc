@@ -17,12 +17,13 @@ zstyle ':vcs_info:git:*' formats '%F{yello}%b%f '
 zstyle ':vcs_info:*' enable git
 
 ## Setting prompt ##
+# Version 1 #
 # Left
-PROMPT='%(?.%F{green}.%F{red})❯%f ' # ━❯ is an alternative prompt
+PROMPT='%(?.%F{cyan}.%F{red})%B>%f%b ' # ━❯ is an alternative prompt
 # Right
 RPROMPT=\$vcs_info_msg_0_ # Displays branch name of git repo if in one
-RPROMPT=$RPROMPT'%F{green}%1~ ' # Display cwd
-RPROMPT=$RPROMPT'%F{cyan}%T%f' # Display time (%T = 24h, %t = 12h)
+RPROMPT+='%F{green}%1~ ' # Display cwd
+RPROMPT+='%F{cyan}%T%f' # Display time (%T = 24h, %t = 12h)
 
 ## History: ##
 setopt SHARE_HISTORY # share history across multiple zsh sessions
@@ -89,6 +90,7 @@ alias l="ls -l -A --color --group-directories-first"
 alias gr="rg"
 alias less="less --IGNORE-CASE --LINE-NUMBERS"
 alias v="nvim"
+alias suck_clean="make clean && rm -f config.h"
 
 # Git-related
 alias gs="git status"

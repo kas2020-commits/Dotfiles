@@ -9,7 +9,7 @@ super + m
     $TERMINAL -e cmus
 
 super + r
-    $TERMINAL -e $FILE
+    $FILE
 
 super + shift + w
     $BROWSER
