@@ -1,6 +1,6 @@
 #!/bin/sh
 
-picom -b --experimental-backends  --refresh-rate 75 --backend glx --no-fading-openclose &
+picom -b --experimental-backends -o 0 --refresh-rate 75 --backend glx --no-fading-openclose &
 # Other Picom toggles: -o 0 --vsync
 # nvidia-settings --config="$XDG_CONFIG_HOME/nvidia-settings-rc" &
 dwmbar &

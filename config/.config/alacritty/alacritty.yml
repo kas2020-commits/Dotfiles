@@ -214,7 +214,7 @@ colors:
     yellow:     '#fba922'
     blue:       '#3971ed'
     magenta:    '#a36ac7'
-    cyan:       '#3971ed'
+    cyan:       '#00ccff'
     white:      '#c5c8c6'
   bright:
     black:      '#969896'
@@ -223,7 +223,7 @@ colors:
     yellow:     '#fba922'
     blue:       '#3971ed'
     magenta:    '#a36ac7'
-    cyan:       '#3971ed'
+    cyan:       '#00ccff'
     white:      '#ffffff'
 
 background_opacity: 1

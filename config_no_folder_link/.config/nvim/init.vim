@@ -34,6 +34,8 @@
                 Plug 'ap/vim-buftabline'
             " Functional:
 				" Plug 'tpope/vim-fugitive'
+				Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+				Plug 'junegunn/fzf.vim'
                 Plug 'tpope/vim-commentary'
 				Plug 'mbbill/undotree'
         call plug#end()
@@ -76,6 +78,7 @@
 		noremap <leader><CR> :term<CR>a
 		noremap <m-Space> :find<Space>
 		noremap <m-p> :Ex<CR>
+		nnoremap <leader>. :Files ~/.config<CR>
 		" Window Management:
 		noremap <silent> <leader>c :wincmd c<CR>
 		noremap <silent> <leader>h :wincmd h<CR>

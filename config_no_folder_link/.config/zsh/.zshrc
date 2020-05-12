@@ -85,8 +85,9 @@ bindkey -v '^?' backward-delete-char
 ## Some Aliases ##
 
 # Basic
-alias ls="ls --hyperlink=always --color --group-directories-first"
-alias l="ls -l -A --color --group-directories-first"
+alias ls="ls --color=auto --group-directories-first"
+alias l="ls -l -A"
+alias grep="grep --color=auto"
 alias gr="rg"
 alias less="less --IGNORE-CASE --LINE-NUMBERS"
 alias v="nvim"
@@ -103,8 +104,22 @@ alias cpu-eaters='ps axch -o cmd:15,%cpu --sort=-%cpu | head'
 alias mem-eaters='ps axch -o cmd:15,%mem --sort=-%mem | head'
 alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)\nMEM HOGGS:\n$(ps axch -o cmd:15,%mem --sort=-%mem | sed 3q)"'
 
-# Dotfiles Manager (for bare repo)
-alias dootfiles='git --git-dir="$HOME"/.local/github/dootfiles --work-tree=$HOME'
+conf() {
+	cd ~/.local/github/dootfiles && fd -H -E .git -t f . | fzf | xargs -r "$EDITOR" && cd
+}
+
+se () {
+	fd -H -E .git -t f . | fzf | xargs -r "$EDITOR"
+}
+
+cd_with_fzf() {
+    cd $HOME && cd "$(fd -E .git -H -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+}
+pacs() {
+    sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
+}
+
+bindkey -s "^f" 'cd_with_fzf^M'
 
 ## Load; Should be last ##
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
