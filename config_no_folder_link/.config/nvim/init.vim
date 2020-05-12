@@ -33,9 +33,6 @@
                 Plug 'norcalli/nvim-colorizer.lua'
                 Plug 'ap/vim-buftabline'
             " Functional:
-				" Plug 'tpope/vim-fugitive'
-				Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-				Plug 'junegunn/fzf.vim'
                 Plug 'tpope/vim-commentary'
 				Plug 'mbbill/undotree'
         call plug#end()

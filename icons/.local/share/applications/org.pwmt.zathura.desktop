@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Zathura
+Exec=zathura %U
+Icon=org.gnome.Evince
+Terminal=false
+Categories=Office;Viewer;
+Keywords=PDF;PS;PostScript;DjVU;document;presentation;viewer;
