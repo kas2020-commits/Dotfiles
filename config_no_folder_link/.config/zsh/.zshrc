@@ -63,25 +63,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-## Change cursor shape for different vi modes ##
-# function zle-keymap-select {
-#   if [[ ${KEYMAP} == vicmd ]] ||
-#      [[ $1 = 'block' ]]; then
-#     echo -ne '\e[1 q'
-#   elif [[ ${KEYMAP} == main ]] ||
-#        [[ ${KEYMAP} == viins ]] ||
-#        [[ ${KEYMAP} = '' ]] ||
-#        [[ $1 = 'beam' ]]; then
-#     echo -ne '\e[4 q'
-#   fi
-# }
-# zle -N zle-keymap-select
-
-# zle-line-init() {
-#     echo -ne "\e[4 q"
-# }
-# zle -N zle-line-init
-
 ## Some Aliases ##
 
 # Basic
@@ -119,7 +100,10 @@ pacs() {
     sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
 }
 
+fix_keyboard() {xset r rate 200 50}
+
 bindkey -s "^f" 'cd_with_fzf^M'
+bindkey -s "^o" 'fix_keyboard^M'
 
 ## Load; Should be last ##
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

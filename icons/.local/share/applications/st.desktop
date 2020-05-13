@@ -1,8 +1,9 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
 TryExec=st
 Exec=st
-Icon=org.gnome.Terminal
+Icon=utilities-terminal
 Terminal=false
 Categories=System;TerminalEmulator;
 

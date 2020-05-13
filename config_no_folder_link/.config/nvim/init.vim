@@ -22,7 +22,8 @@
         autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
         set autochdir
 		set incsearch
-		set guicursor=
+		set guicursor=a:block
+		set guicursor+=a:blinkon0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
         call plug#begin()
@@ -30,14 +31,13 @@
                 Plug 'gruvbox-community/gruvbox'
 				" Plug 'arcticicestudio/nord-vim'
             " Assthetic:
-                Plug 'norcalli/nvim-colorizer.lua'
                 Plug 'ap/vim-buftabline'
             " Functional:
                 Plug 'tpope/vim-commentary'
 				Plug 'mbbill/undotree'
         call plug#end()
-        lua require'colorizer'.setup()
 		let g:gruvbox_contrast_dark='hard'
+		set background=dark
         colorscheme gruvbox
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocomplete Related:
@@ -126,3 +126,8 @@
 		let g:netrw_banner = 0
 		let g:netrw_browse_split = 0
 		" let g:netrw_liststyle = 1
+
+if has("gui_running")
+	set guioptions-=m guioptions-=l guioptions-=T guioptions-=r
+	set guifont=Fira\ Code\ Medium\ 14
+endif

@@ -167,7 +167,7 @@
 !! urxvt settings !!
 !urxvt.background: [90]#00001a
 urxvt.scrollBar: false
-urxvt.font: xft:Fira Code Medium:pixelsize=19
+urxvt.font: xft:Fira Code Medium:pixelsize=18
 urxvt.cursorUnderline: false
 urxvt.letterSpace: 0
 urxvt.cursorBlink: false
