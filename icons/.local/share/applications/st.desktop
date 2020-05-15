@@ -3,7 +3,8 @@
 Type=Application
 TryExec=st
 Exec=st
-Icon=utilities-terminal
+#Icon=Alacritty
+Icon=org.gnome.Terminal
 Terminal=false
 Categories=System;TerminalEmulator;
 

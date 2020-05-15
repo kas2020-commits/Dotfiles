@@ -88,22 +88,20 @@ alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)
 conf() {
 	cd ~/.local/github/dootfiles && fd -H -E .git -t f . | fzf | xargs -r "$EDITOR" && cd
 }
-
 se () {
 	fd -H -E .git -t f . | fzf | xargs -r "$EDITOR"
 }
-
 cd_with_fzf() {
     cd $HOME && cd "$(fd -E .git -H -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
 }
 pacs() {
     sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
 }
-
-fix_keyboard() {xset r rate 200 50}
+pacr() {
+	sudo pacman -Rns $(pacman -Q | fzf -m --preview-window=:hidden | awk '{print $1}')
+}
 
 bindkey -s "^f" 'cd_with_fzf^M'
-bindkey -s "^o" 'fix_keyboard^M'
 
 ## Load; Should be last ##
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
