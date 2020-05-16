@@ -167,7 +167,7 @@
 !! urxvt settings !!
 !urxvt.background: [90]#00001a
 urxvt.scrollBar: false
-urxvt.font: xft:Fira Code Medium:pixelsize=18
+urxvt.font: xft:Fira Code Medium:pixelsize=20
 urxvt.cursorUnderline: false
 urxvt.letterSpace: 0
 urxvt.cursorBlink: false
@@ -179,6 +179,6 @@ URxvt.iso14755_52:         falseurxvt.cursorBlink: 1
 !! st-specifics
 /* st.alpha: 0.95 */
 st.alpha: 1.0
-st.font: Fira Code Medium:pixelsize=16:antialias=true:autohint=true
+st.font: Fira Code Medium:pixelsize=18:antialias=true:autohint=true
 /* st.font: DejaVu Sans Mono:style=Regular:pixelsize=20:antialias=true:autohint=true */
 /* st.fontalt0: JoyPixels:pixelsize=10:antialias=true:autohint=true */

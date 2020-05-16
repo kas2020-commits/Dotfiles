@@ -2,9 +2,6 @@
 super + Return
     $TERMINAL
 
-super + shift + Return
-    $TERMINAL -e nvim
-
 super + m
     $TERMINAL -e cmus
 

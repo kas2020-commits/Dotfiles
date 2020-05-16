@@ -31,11 +31,13 @@
                 Plug 'gruvbox-community/gruvbox'
 				" Plug 'arcticicestudio/nord-vim'
             " Assthetic:
+				Plug 'norcalli/nvim-colorizer.lua'
                 Plug 'ap/vim-buftabline'
             " Functional:
                 Plug 'tpope/vim-commentary'
 				Plug 'mbbill/undotree'
         call plug#end()
+		lua require'colorizer'.setup()
 		let g:gruvbox_contrast_dark='hard'
 		set background=dark
         colorscheme gruvbox
