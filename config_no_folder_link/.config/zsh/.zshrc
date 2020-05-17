@@ -63,6 +63,27 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[4 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[4 q"
+}
+zle -N zle-line-init
+echo -ne '\e[4 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[4 q' ;} # Use beam shape cursor for each new prompt.
+
 ## Some Aliases ##
 
 # Basic
@@ -73,6 +94,10 @@ alias gr="rg"
 alias less="less --IGNORE-CASE --LINE-NUMBERS"
 alias v="nvim"
 alias suck_clean="make clean && rm -f config.h"
+
+# Taskwarrior
+alias tl="task list"
+alias tn="task next"
 
 # Git-related
 alias gs="git status"

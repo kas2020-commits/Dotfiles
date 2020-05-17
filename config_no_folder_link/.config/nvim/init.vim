@@ -22,7 +22,8 @@
         autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
         set autochdir
 		set incsearch
-		set guicursor=a:block
+		set guicursor=n-v:block
+		set guicursor+=i-c:hor4
 		set guicursor+=a:blinkon0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
