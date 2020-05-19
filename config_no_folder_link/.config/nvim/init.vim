@@ -4,7 +4,7 @@
         let mapleader =" "
         set isfname-=$,=
         set number relativenumber
-        set mouse=a " Mouse features set to all
+        " set mouse=a " Mouse features set to all
         set encoding=utf-8
         set spelllang=en_us
         set cursorline " Changes the line the cursor is on
@@ -22,9 +22,9 @@
         autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
         set autochdir
 		set incsearch
-		set guicursor=n-v:block
-		set guicursor+=i-c:hor4
-		set guicursor+=a:blinkon0
+		" set guicursor=n-v:block
+		" set guicursor+=i-c:hor4
+		" set guicursor+=a:blinkon0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
         call plug#begin()
@@ -61,6 +61,7 @@
         autocmd BufWritePost *Xresources !xrdb %
 		autocmd BufWritePost init.vim source %
         autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+		autocmd VimLeave *.tex !texclear %
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation:
         filetype plugin indent on
@@ -114,7 +115,6 @@
 		" Outside Scripts:
         map <leader>c :w! \| !compiler <c-r>%<CR>
         noremap <leader>p :!opout <c-r>%<CR><CR>
-        autocmd VimLeave *.tex !texclear %
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusline:
         set laststatus=1

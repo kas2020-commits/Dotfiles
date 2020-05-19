@@ -72,28 +72,29 @@ function zle-keymap-select {
        [[ ${KEYMAP} == viins ]] ||
        [[ ${KEYMAP} = '' ]] ||
        [[ $1 = 'beam' ]]; then
-    echo -ne '\e[4 q'
+    echo -ne '\e[5 q'
   fi
 }
 zle -N zle-keymap-select
 zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[4 q"
+    echo -ne "\e[5 q"
 }
 zle -N zle-line-init
-echo -ne '\e[4 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[4 q' ;} # Use beam shape cursor for each new prompt.
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 ## Some Aliases ##
 
 # Basic
-alias ls="ls --color=auto --group-directories-first"
-alias l="ls -l -A"
-alias grep="grep --color=auto"
-alias gr="rg"
-alias less="less --IGNORE-CASE --LINE-NUMBERS"
-alias v="nvim"
-alias suck_clean="make clean && rm -f config.h"
+alias ls="ls -1 -A --color=auto --group-directories-first"
+alias l="br -h"
+alias grep="rg"
+
+# # UNIX Flags (If you don't decide to use above aliases)
+# alias l="ls -l -A"
+# alias grep="grep --color=auto"
+# alias less="less --IGNORE-CASE --LINE-NUMBERS"
 
 # Taskwarrior
 alias tl="task list"
@@ -105,10 +106,11 @@ alias ga="git add *"
 alias gm="git commit -m"
 alias gi="git clean --interactive"
 
-# Tools
+# Shortcuts
 alias cpu-eaters='ps axch -o cmd:15,%cpu --sort=-%cpu | head'
 alias mem-eaters='ps axch -o cmd:15,%mem --sort=-%mem | head'
 alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)\nMEM HOGGS:\n$(ps axch -o cmd:15,%mem --sort=-%mem | sed 3q)"'
+alias suck_clean="make clean && rm -f config.h"
 
 conf() {
 	cd ~/.local/github/dootfiles && fd -H -E .git -t f . | fzf | xargs -r "$EDITOR" && cd
@@ -131,3 +133,5 @@ bindkey -s "^f" 'cd_with_fzf^M'
 ## Load; Should be last ##
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+
+source /home/kar/.config/broot/launcher/bash/br

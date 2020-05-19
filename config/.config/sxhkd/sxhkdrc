@@ -6,7 +6,7 @@ super + m
     $TERMINAL -e cmus
 
 super + r
-    $FILE
+    $TERMINAL -e $FILE
 
 super + shift + w
     $BROWSER
@@ -38,7 +38,7 @@ XF86Audio{Raise,Lower}Volume
     pamixer -{i,d} 5; refreshbar.sh
 
 XF86Audio{Play,Pause,Next,Prev}
-    cmus-remote -{u,u,n,r}
+    playerctl {play-pause,play-pause,next,previous}
 
 # Brightness controls
 XF86MonBrightnessUp
@@ -46,8 +46,3 @@ XF86MonBrightnessUp
 
 XF86MonBrightnessDown
     sudo /usr/local/bin/brightness/Bright_Down.sh
-
-## Alt controls ##
-#amixer sset Master toggle; refreshbar.sh
-#    pamixer -{m,u}
-#amixer sset Master 5%{+,-}; refreshbar.sh
