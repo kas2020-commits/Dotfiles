@@ -4,7 +4,7 @@
         let mapleader =" "
         set isfname-=$,=
         set number relativenumber
-        " set mouse=a " Mouse features set to all
+        set mouse=a " Mouse features set to all
         set encoding=utf-8
         set spelllang=en_us
         set cursorline " Changes the line the cursor is on
