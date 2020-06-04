@@ -88,7 +88,6 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Basic
 alias ls="ls -1 -A --color=auto --group-directories-first"
-alias l="br -h"
 alias grep="rg"
 
 # # UNIX Flags (If you don't decide to use above aliases)
@@ -112,9 +111,6 @@ alias mem-eaters='ps axch -o cmd:15,%mem --sort=-%mem | head'
 alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)\nMEM HOGGS:\n$(ps axch -o cmd:15,%mem --sort=-%mem | sed 3q)"'
 alias suck_clean="make clean && rm -f config.h"
 
-conf() {
-	cd ~/.local/github/dootfiles && fd -H -E .git -t f . | fzf | xargs -r "$EDITOR" && cd
-}
 se () {
 	fd -H -E .git -t f . | fzf | xargs -r "$EDITOR"
 }
@@ -122,10 +118,14 @@ cd_with_fzf() {
     cd $HOME && cd "$(fd -E .git -H -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
 }
 pacs() {
-    sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
+    sudo pacman -S $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
+    # sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
 }
 pacr() {
-	sudo pacman -Rns $(pacman -Q | fzf -m --preview-window=:hidden | awk '{print $1}')
+	sudo pacman -Rns $(pacman -Q | awk '{print $1}' | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
+}
+pacu() {
+	sudo pacman -Syu && checkupdates | wc -l > "${HOME}/.local/share/arch_updates"
 }
 
 bindkey -s "^f" 'cd_with_fzf^M'
@@ -133,5 +133,3 @@ bindkey -s "^f" 'cd_with_fzf^M'
 ## Load; Should be last ##
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-
-source /home/kar/.config/broot/launcher/bash/br

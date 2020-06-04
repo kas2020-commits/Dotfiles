@@ -2,10 +2,17 @@
 
 sep=" | "
 
+# Some extra icons: 
+
+kerver=" $(uname -r)"
+
+checkupdates | wc -l > "${HOME}/.local/share/arch_updates"
+
 while :; do
-	weather="$(head "${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport")"
-	mem=" $(free -h | awk '/^Mem:/ {print $3}' | sed "s/Gi/G/g")"
-	temp=" $(sensors | awk '/^Tdie/ {print $2}' | sed "s/+//")"
+	weather="$(head ${HOME}/.local/share/weatherreport)"
+	updates=" $(head ${HOME}/.local/share/arch_updates)"
+	# mem=" $(free -h | awk '/^Mem:/ {print $3}' | sed "s/Gi/G/g")"
+	# temp=" $(sensors | awk '/^Tdie/ {print $2}' | sed "s/+//")"
 	vol_percent="$(pamixer --get-volume-human)"
 	if [ "$vol_percent" = "muted" ]; then
 		vol=" ${vol_percent}"
@@ -14,6 +21,6 @@ while :; do
 	fi
 	date=" $(date '+%b %d (%a)')"
 	time=" $(date '+%I:%M %p')"
-	xsetroot -name " ${weather}${sep}${mem}${sep}${temp}${sep}${vol}${sep}${date}${sep}${time}"
-    sleep 30s
+	xsetroot -name " ${kerver}${sep}${updates}${sep}${weather}${sep}${vol}${sep}${date}${sep}${time}"
+	sleep 1m
 done

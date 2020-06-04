@@ -59,7 +59,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileype Specific:
         autocmd BufWritePost *Xresources !xrdb %
-		autocmd BufWritePost init.vim source %
+		" autocmd BufWritePost init.vim source %
         autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 		autocmd VimLeave *.tex !texclear %
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -117,9 +117,10 @@
         noremap <leader>p :!opout <c-r>%<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusline:
-        set laststatus=1
+        set laststatus=2
 		set statusline=
-        set statusline+=%f\ \ \ [%M%R%H%W%Y][%{&ff}]\ \ %=\ line:%l/%L\ col:%c
+        set statusline+=\ %F\ [%M%R%H%W%Y][%{&ff}]
+		set statusline+=\ %=\ line:%l/%L\ col:%c
 		set statusline+=\ \ %p%%
 		let g:buftabline_show = 2
         let g:buftabline_numbers = 0
