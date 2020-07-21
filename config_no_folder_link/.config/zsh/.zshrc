@@ -4,10 +4,6 @@
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
 
-## Enable colors and change prompt: ##
-autoload -U colors && colors
-test -r "$DIR_COLORS_TEMPLATE" && eval $(dircolors "$DIR_COLORS_TEMPLATE")
-
 ## Git Integration ##
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
@@ -17,7 +13,6 @@ zstyle ':vcs_info:git:*' formats '%F{yello}%b%f '
 zstyle ':vcs_info:*' enable git
 
 ## Setting prompt ##
-# Version 1 #
 # Left
 PROMPT='%(?.%F{cyan}.%F{red})%B❯%f%b ' # > ━❯ is an alternative prompt
 # Right
@@ -89,15 +84,12 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # Basic
 alias ls="ls -1 -A --color=auto --group-directories-first"
 alias grep="rg"
+alias hg="history | grep -i"
 
-# # UNIX Flags (If you don't decide to use above aliases)
+# # POSIX Flags (If you don't decide to use above aliases)
 # alias l="ls -l -A"
 # alias grep="grep --color=auto"
 # alias less="less --IGNORE-CASE --LINE-NUMBERS"
-
-# Taskwarrior
-alias tl="task list"
-alias tn="task next"
 
 # Git-related
 alias gs="git status"
@@ -106,10 +98,7 @@ alias gm="git commit -m"
 alias gi="git clean --interactive"
 
 # Shortcuts
-alias cpu-eaters='ps axch -o cmd:15,%cpu --sort=-%cpu | head'
-alias mem-eaters='ps axch -o cmd:15,%mem --sort=-%mem | head'
-alias hogs='echo -e "CPU HOGGS:\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | sed 3q)\nMEM HOGGS:\n$(ps axch -o cmd:15,%mem --sort=-%mem | sed 3q)"'
-alias suck_clean="make clean && rm -f config.h"
+alias g++14="g++ -std=c++14 -Wall -g"
 
 se () {
 	fd -H -E .git -t f . | fzf | xargs -r "$EDITOR"
@@ -117,19 +106,16 @@ se () {
 cd_with_fzf() {
     cd $HOME && cd "$(fd -E .git -H -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
 }
-pacs() {
-    sudo pacman -S $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
-    # sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
-}
-pacr() {
-	sudo pacman -Rns $(pacman -Q | awk '{print $1}' | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
-}
-pacu() {
-	sudo pacman -Syu && checkupdates | wc -l > "${HOME}/.local/share/arch_updates"
-}
+# pacs() {
+#     sudo pacman -S $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
+#     # sudo pacman -Syy $(pacman -Ssq | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
+# }
+# pacr() {
+# 	sudo pacman -Rns $(pacman -Q | awk '{print $1}' | fzf -m --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
+# }
+# pacu() {
+# 	sudo pacman -Syu && checkupdates | wc -l > "${HOME}/.local/share/arch_updates"
+# }
 
 bindkey -s "^f" 'cd_with_fzf^M'
-
-## Load; Should be last ##
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+bindkey -s "^r" 'cat "$HISTFILE" | fzf^M'

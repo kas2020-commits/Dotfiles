@@ -10,9 +10,10 @@ mkdir -p $(ls "$temp1"/config_no_folder_link/.config)
 cd "$temp1"
 
 ## the actual heavy lifting, curtesey of GNU stow ##
-stow -t ~ config config_no_folder_link local
+# stow -t ~ config config_no_folder_link local
+stow -t ~ config config_no_folder_link
 
 ## Home links that need to be made ##
-ln -fs "$XDG_CONFIG_HOME"/zprofile 		"$HOME"/.zprofile
-ln -fs "$XDG_CONFIG_HOME"/xinitrc  		"$HOME"/.xinitrc
-ln -fs "$XDG_CONFIG_HOME"/task/taskrc  	"$HOME"/.taskrc
+ln -fs "${HOME}/.config/zprofile" 		"$HOME"/.zprofile
+ln -fs "${HOME}/.config/xinitrc"  		"$HOME"/.xinitrc
+ln -fs "${HOME}/.config/task/taskrc"  	"$HOME"/.taskrc
