@@ -28,7 +28,7 @@
     call plug#begin()
         " Themes:
             Plug 'gruvbox-community/gruvbox'
-			" Plug 'arcticicestudio/nord-vim'
+			Plug 'arcticicestudio/nord-vim'
         " Assthetic:
 			Plug 'norcalli/nvim-colorizer.lua'
             Plug 'ap/vim-buftabline'
@@ -43,6 +43,7 @@
 	let g:gruvbox_contrast_dark='hard'
 	set background=dark
     colorscheme gruvbox
+    " colorscheme nord
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Related
 	function! s:check_back_space() abort
