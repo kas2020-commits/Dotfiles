@@ -88,7 +88,7 @@ alias hg="history | grep -i"
 
 # Git-related
 alias gs="git status"
-alias ga="git add *"
+alias ga="git add ."
 alias gm="git commit -m"
 alias gi="git clean --interactive"
 

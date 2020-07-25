@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 choices="reboot\nshutdown\nsuspend\nhibernate"
 

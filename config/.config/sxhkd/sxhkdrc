@@ -19,7 +19,8 @@ ctrl + alt + l
     $HOME/.config/i3lock/beut.sh
 
 Print
-    scrot '%Y%m%d-%T.png' -e 'mv $f ~/Pictures/Screenshots/'
+	flameshot full --path ~/Pictures/Screenshots
+    # scrot '%Y%m%d-%T.png' -e 'mv $f ~/Pictures/Screenshots/'
 
 super + Insert
     clipmenu -i -p "Clipboard" -l 20
