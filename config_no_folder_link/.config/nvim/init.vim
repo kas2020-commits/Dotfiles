@@ -3,7 +3,6 @@
     syntax on
     let mapleader =" "
     set isfname-=$,=
-    " set number relativenumber
 	set number
     set mouse=a " Mouse features set to all
     set encoding=utf-8
@@ -14,7 +13,6 @@
     set clipboard=unnamedplus
     set splitbelow splitright " set splitting to be more normal:
     set termguicolors " Tell vim to use truecolor support
-	" set t_Co=256
     set linebreak " Makes line wrapping better
     set textwidth=80 " Max line width before linebreak is triggered
     set wrap " same as linebreak but uses terminal width
@@ -28,22 +26,28 @@
     call plug#begin()
         " Themes:
             Plug 'gruvbox-community/gruvbox'
-			Plug 'arcticicestudio/nord-vim'
+			Plug 'joshdick/onedark.vim'
+			Plug 'dracula/vim'
+			" Plug 'arcticicestudio/nord-vim'
+			" Plug 'altercation/vim-colors-solarized'
+			" Plug 'jacoborus/tender.vim'
         " Assthetic:
 			Plug 'norcalli/nvim-colorizer.lua'
             Plug 'ap/vim-buftabline'
-			Plug 'preservim/nerdtree'
+			Plug 'mhinz/vim-startify'
         " Functional:
+			Plug 'preservim/nerdtree'
             Plug 'tpope/vim-commentary'
 			Plug 'mbbill/undotree'
 			Plug 'neoclide/coc.nvim'
 			" Plug 'lyuts/vim-rtags'
     call plug#end()
 	lua require'colorizer'.setup()
+
 	let g:gruvbox_contrast_dark='hard'
 	set background=dark
-    colorscheme gruvbox
-    " colorscheme nord
+    " colorscheme gruvbox
+	colorscheme dracula
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Related
 	function! s:check_back_space() abort
@@ -73,17 +77,9 @@
     set ignorecase " Ignore case sensitivity when searching
     set smartcase " Tries to be smart about searching
     set hidden
-	set wildignore+=**/node_modules/**
-	set wildignore+=*.o
-	set path+=~/.config
-	set path+=~/.local/bin
-	set path+=~/.local/github
-	set path-=~/Downloads
-    set path+=** " adds all files in your project folder to the path
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileype Specific:
     autocmd BufWritePost *Xresources !xrdb %
-	" autocmd BufWritePost init.vim source %
     autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 	autocmd VimLeave *.tex !texclear %
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

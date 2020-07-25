@@ -36,6 +36,7 @@ XF86AudioMute
 
 XF86Audio{Raise,Lower}Volume
     pamixer -{i,d} 5; refreshbar.sh
+	# pactl set-sink-volume 0 {+,-}5%; refreshbar.sh
 
 XF86Audio{Play,Pause,Next,Prev}
     playerctl {play-pause,play-pause,next,previous}
