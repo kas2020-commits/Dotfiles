@@ -36,3 +36,5 @@ export PATH=$PATH:$HOME/.local/bin
 ## Command options ##
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export DIR_COLORS_TEMPLATE="$XDG_CONFIG_HOME/dir_colors"
+
+[ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx

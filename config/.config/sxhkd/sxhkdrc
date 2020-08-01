@@ -28,22 +28,22 @@ super + shift + y
     youtube.sh
 
 ctrl + alt + Delete
-    power-management.sh
+    power-management
 
 # Audiokeys
 XF86AudioMute
-    pactl set-sink-mute @DEFAULT_SINK@ toggle; refreshbar.sh
+    pactl set-sink-mute @DEFAULT_SINK@ toggle; refreshbar
 
 XF86Audio{Raise,Lower}Volume
-    pamixer -{i,d} 5; refreshbar.sh
-	# pactl set-sink-volume 0 {+,-}5%; refreshbar.sh
+    pamixer -{i,d} 5; refreshbar
+	# pactl set-sink-volume 0 {+,-}5%; refreshbar
 
 XF86Audio{Play,Pause,Next,Prev}
     playerctl {play-pause,play-pause,next,previous}
 
-# Brightness controls
-XF86MonBrightnessUp
-    sudo /usr/local/bin/brightness/Bright_Up.sh
+# # Brightness controls
+# XF86MonBrightnessUp
+#     sudo /usr/local/bin/brightness/Bright_Up.sh
 
-XF86MonBrightnessDown
-    sudo /usr/local/bin/brightness/Bright_Down.sh
+# XF86MonBrightnessDown
+#     sudo /usr/local/bin/brightness/Bright_Down.sh

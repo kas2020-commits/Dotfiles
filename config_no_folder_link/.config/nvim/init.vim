@@ -3,7 +3,7 @@
     syntax on
     let mapleader =" "
     set isfname-=$,=
-	set number
+	set number relativenumber
     set mouse=a " Mouse features set to all
     set encoding=utf-8
     set spelllang=en_us
@@ -21,6 +21,7 @@
     autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
     set autochdir
 	set incsearch
+	set guicursor=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
     call plug#begin()
@@ -34,13 +35,13 @@
         " Assthetic:
 			Plug 'norcalli/nvim-colorizer.lua'
             Plug 'ap/vim-buftabline'
-			Plug 'mhinz/vim-startify'
         " Functional:
 			Plug 'preservim/nerdtree'
             Plug 'tpope/vim-commentary'
 			Plug 'mbbill/undotree'
 			Plug 'neoclide/coc.nvim'
-			" Plug 'lyuts/vim-rtags'
+			Plug 'junegunn/fzf.vim'
+			" Plug 'junegunn/fzf'
     call plug#end()
 	lua require'colorizer'.setup()
 
@@ -135,6 +136,11 @@
 	" Outside Scripts:
     map <leader>c :w! \| !compiler <c-r>%<CR>
     noremap <leader>p :!opout <c-r>%<CR><CR>
+
+	map <C-p> :FZF<CR>
+
+	let g:fzf_layout = { 'window' : { 'width': 0.8, 'height': 0.8 } }
+	" let $FZF_DEFAULT_OPTS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusline:
     set laststatus=1

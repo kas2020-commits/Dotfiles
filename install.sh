@@ -11,7 +11,7 @@ cd "$temp1"
 
 ## the actual heavy lifting, curtesey of GNU stow ##
 # stow -t ~ config config_no_folder_link local
-stow -t ~ config config_no_folder_link
+stow -t ~ config config_no_folder_link local
 
 ## Home links that need to be made ##
 ln -fs "${HOME}/.config/zprofile" 		"$HOME"/.zprofile

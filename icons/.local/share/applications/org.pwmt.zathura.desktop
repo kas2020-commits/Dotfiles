@@ -4,6 +4,7 @@ Version=1.0
 Type=Application
 Name=Zathura
 Exec=zathura %U
+#Exec=devour zathura %U
 Icon=org.gnome.Evince
 Terminal=false
 Categories=Office;Viewer;
