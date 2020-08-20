@@ -74,7 +74,7 @@ font:
     style: Italic
 
   # Point size
-  size: 13
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -171,57 +171,57 @@ draw_bold_text_with_bright_colors: true
 #     cyan:       '#8ec07c'
 #     white:      '#ebdbb2'
 
-# Solarized
-colors:
-  primary:
-    background: '#002b36'
-    foreground: '#93a1a1'
-  normal:
-    black:   '#002b36'
-    red:     '#dc322f'
-    green:   '#859900'
-    yellow:  '#b58900'
-    blue:    '#268bd2'
-    magenta: '#6c71c4'
-    cyan:    '#2aa198'
-    white:   '#93a1a1'
-  bright:
-    black:   '#657b83'
-    red:     '#dc322f'
-    green:   '#859900'
-    yellow:  '#b58900'
-    blue:    '#268bd2'
-    magenta: '#6c71c4'
-    cyan:    '#2aa198'
-    white:   '#fdf6e3'
-
-
-# Google Dark Scheme:
+# # Solarized
 # colors:
 #   primary:
-#     background: '#1d1f21'
-#     foreground: '#c5c8c6'
-#   cursor:
-#     text:       '#44475a'
-#     cursor:     '#f8f8f2'
+#     background: '#002b36'
+#     foreground: '#93a1a1'
 #   normal:
-#     black:      '#1d1f21'
-#     red:        '#cc342b'
-#     green:      '#198844'
-#     yellow:     '#fba922'
-#     blue:       '#3971ed'
-#     magenta:    '#a36ac7'
-#     cyan:       '#00ccff'
-#     white:      '#c5c8c6'
+#     black:   '#002b36'
+#     red:     '#dc322f'
+#     green:   '#859900'
+#     yellow:  '#b58900'
+#     blue:    '#268bd2'
+#     magenta: '#6c71c4'
+#     cyan:    '#2aa198'
+#     white:   '#93a1a1'
 #   bright:
-#     black:      '#333333'
-#     red:        '#cc342b'
-#     green:      '#198844'
-#     yellow:     '#fba922'
-#     blue:       '#3971ed'
-#     magenta:    '#a36ac7'
-#     cyan:       '#00ccff'
-#     white:      '#ffffff'
+#     black:   '#657b83'
+#     red:     '#dc322f'
+#     green:   '#859900'
+#     yellow:  '#b58900'
+#     blue:    '#268bd2'
+#     magenta: '#6c71c4'
+#     cyan:    '#2aa198'
+#     white:   '#fdf6e3'
+
+
+Google Dark Scheme:
+colors:
+  primary:
+    background: '#1d1f21'
+    foreground: '#c5c8c6'
+  cursor:
+    text:       '#44475a'
+    cursor:     '#f8f8f2'
+  normal:
+    black:      '#1d1f21'
+    red:        '#cc342b'
+    green:      '#198844'
+    yellow:     '#fba922'
+    blue:       '#3971ed'
+    magenta:    '#a36ac7'
+    cyan:       '#00ccff'
+    white:      '#c5c8c6'
+  bright:
+    black:      '#333333'
+    red:        '#cc342b'
+    green:      '#198844'
+    yellow:     '#fba922'
+    blue:       '#3971ed'
+    magenta:    '#a36ac7'
+    cyan:       '#00ccff'
+    white:      '#ffffff'
 
 background_opacity: 1
 

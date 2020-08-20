@@ -1,6 +1,7 @@
 " Global Rules:
     set nocompatible "sets no compatible to vi-mode
     syntax on
+    filetype plugin indent on
     let mapleader =" "
     set isfname-=$,=
 	set number relativenumber
@@ -15,42 +16,47 @@
     set termguicolors " Tell vim to use truecolor support
     set linebreak " Makes line wrapping better
     set textwidth=80 " Max line width before linebreak is triggered
-    set wrap " same as linebreak but uses terminal width
+    set nowrap " same as linebreak but uses terminal width
     set updatetime=50
     set colorcolumn=80
     autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
     set autochdir
 	set incsearch
-	set guicursor=
+	set guicursor=i:hor2
+	set noswapfile
+	set nobackup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
     call plug#begin()
         " Themes:
             Plug 'gruvbox-community/gruvbox'
 			Plug 'dracula/vim'
-			" Plug 'joshdick/onedark.vim'
-			" Plug 'arcticicestudio/nord-vim'
-			" Plug 'altercation/vim-colors-solarized'
-			" Plug 'jacoborus/tender.vim'
+			Plug 'arcticicestudio/nord-vim'
         " Assthetic:
-			Plug 'norcalli/nvim-colorizer.lua'
+			" Plug 'norcalli/nvim-colorizer.lua'
             Plug 'ap/vim-buftabline'
+			Plug 'sheerun/vim-polyglot'
         " Functional:
-			Plug 'preservim/nerdtree'
             Plug 'tpope/vim-commentary'
 			Plug 'mbbill/undotree'
 			Plug 'neoclide/coc.nvim'
 			Plug 'junegunn/fzf.vim'
-			" Plug 'lervag/vimtex'
-			" Plug 'junegunn/fzf'
+			Plug 'jremmen/vim-ripgrep'
     call plug#end()
-	lua require'colorizer'.setup()
-
-	let g:gruvbox_contrast_dark='hard'
-	set background=dark
-	colorscheme dracula
+	" lua require'colorizer'.setup()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Coc Related
+" Colorscheme:
+	let g:gruvbox_contrast_dark='hard'
+	let g:gruvbox_invert_selection='0'
+
+	if exists('+termguicolors')
+    	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	endif
+	set background=dark
+	colorscheme gruvbox
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Coc Related:
 	function! s:check_back_space() abort
 		let col = col('.') - 1
 		return !col || getline('.')[col - 1]  =~# '\s'
@@ -59,14 +65,6 @@
 	inoremap <silent><expr> <TAB>
     	  \ pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-	" GoTo code navigation.
-	nmap <silent> <leader>gd <Plug>(coc-definition)
-	nmap <silent> <leader>gy <Plug>(coc-type-definition)
-	nmap <silent> <leader>gi <Plug>(coc-implementation)
-	nmap <silent> <leader>gr <Plug>(coc-references)
-
-	nnoremap <buffer> <leader>cr :CocRestart<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocomplete Related:
     set wildmenu " The nice tab completions at the command
@@ -81,7 +79,6 @@
 	autocmd VimLeave *.tex !texclear %
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation:
-        filetype plugin indent on
         set autoindent
         set shiftwidth=0
 	" Hard Tabs:
@@ -93,18 +90,33 @@
 " Keybinds:
 	" Plugin:
 	noremap <silent> <leader>u :UndotreeToggle<CR>
+	noremap <silent> <leader>vs :vs<CR>
+	noremap <silent> <leader>ps :Rg<SPACE>
 	noremap <leader><CR> :term<CR>a
-	noremap <m-Space> :find<Space>
-	noremap <m-p> :NERDTreeToggleVCS<CR>
-	noremap <C-p> :FZF<CR>
-	nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+	noremap <m-p> :FZF<CR>
+
+	" Godly Ripgrep Search:
+	nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+	nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
+
+	" GoTo Code Navigation:
+	nmap <silent> <leader>gd <Plug>(coc-definition)
+	nmap <silent> <leader>gy <Plug>(coc-type-definition)
+	nmap <silent> <leader>gi <Plug>(coc-implementation)
+	nmap <silent> <leader>gr <Plug>(coc-references)
+	nnoremap <buffer> <leader>cr :CocRestart<CR>
 
 	" Window Management:
-	noremap  <silent> <leader>c :wincmd c<CR>
-	noremap  <silent> <leader>h :wincmd h<CR>
-	noremap  <silent> <leader>j :wincmd j<CR>
-	noremap  <silent> <leader>k :wincmd k<CR>
-	noremap  <silent> <leader>l :wincmd l<CR>
+	nnoremap <C-c> <nop>
+	nnoremap <C-h> <nop>
+	nnoremap <C-j> <nop>
+	nnoremap <C-k> <nop>
+	nnoremap <C-l> <nop>
+	noremap  <silent> <C-c> :wincmd c<CR>
+	noremap  <silent> <C-h>     :wincmd h<CR>
+	noremap  <silent> <C-j>     :wincmd j<CR>
+	noremap  <silent> <C-k>     :wincmd k<CR>
+	noremap  <silent> <C-l>     :wincmd l<CR>
 	nnoremap <silent> <Left>    :vertical resize +2<CR>
 	nnoremap <silent> <Right>   :vertical resize -2<CR>
 	nnoremap <silent> <Down>    :resize +2<CR>
@@ -139,7 +151,7 @@
 	tnoremap <m-q> <C-\><C-n>:bd!<CR>
 
 	" Outside Scripts:
-    noremap <C-c> :w! \| !compiler <c-r>%<CR>
+    noremap <leader>c :w! \| !compiler <c-r>%<CR>
     noremap <leader>p :!opout <c-r>%<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusline:
@@ -155,19 +167,6 @@
     let g:buftabline_numbers = 0
     let g:buftabline_indicators = 2
 
-	" NERDTree:
-	let g:NERDTreeDirArrowExpandable = ''
-	let g:NERDTreeDirArrowCollapsible = ''
-	let NERDTreeQuitOnOpen = 1
-	let NERDTreeAutoDeleteBuffer = 1
-	let NERDTreeMinimalUI = 1
-	let NERDTreeDirArrows = 1
-
 	" FZF:
 	let g:fzf_layout = { 'window' : { 'width': 0.8, 'height': 0.8 } }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Gui_Tools:
-	if has("gui_running")
-		set guioptions-=m guioptions-=l guioptions-=T guioptions-=r
-		set guifont=JetBrains\ Mono\ Regular\ 14
-	endif
