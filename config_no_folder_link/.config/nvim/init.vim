@@ -9,6 +9,7 @@
     set encoding=utf-8
     set spelllang=en_us
     set cursorline " Changes the line the cursor is on
+	set cursorcolumn "
     set ruler " Always show cursor location on bottom-right
     set scrolloff=4 " how many lines does the cursor need as cushion space
     set clipboard=unnamedplus
@@ -22,18 +23,19 @@
     autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
     set autochdir
 	set incsearch
-	set guicursor=i:hor2
+	" set guicursor=i:hor2
+	set guicursor=
 	set noswapfile
 	set nobackup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
     call plug#begin()
         " Themes:
-            Plug 'gruvbox-community/gruvbox'
+            " Plug 'gruvbox-community/gruvbox'
 			Plug 'dracula/vim'
-			Plug 'arcticicestudio/nord-vim'
+			" Plug 'arcticicestudio/nord-vim'
         " Assthetic:
-			" Plug 'norcalli/nvim-colorizer.lua'
+			Plug 'norcalli/nvim-colorizer.lua'
             Plug 'ap/vim-buftabline'
 			Plug 'sheerun/vim-polyglot'
         " Functional:
@@ -42,29 +44,31 @@
 			Plug 'neoclide/coc.nvim'
 			Plug 'junegunn/fzf.vim'
 			Plug 'jremmen/vim-ripgrep'
+			Plug 'rust-lang/rust.vim'
     call plug#end()
-	" lua require'colorizer'.setup()
+	lua require'colorizer'.setup()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colorscheme:
-	let g:gruvbox_contrast_dark='hard'
-	let g:gruvbox_invert_selection='0'
+	" let g:gruvbox_contrast_dark='hard'
+	" let g:gruvbox_invert_selection='0'
 
-	if exists('+termguicolors')
-    	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-	endif
-	set background=dark
-	colorscheme gruvbox
+	" if exists('+termguicolors')
+    	" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    	" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	" endif
+	" set background=dark
+	" colorscheme gruvbox
+	colorscheme dracula
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Related:
+"
 	function! s:check_back_space() abort
 		let col = col('.') - 1
 		return !col || getline('.')[col - 1]  =~# '\s'
 	endfunction
 
-	inoremap <silent><expr> <TAB>
-    	  \ pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+	" auto highlights the word the cursor is on based on lsp.
+	autocmd CursorHold * silent call CocActionAsync('highlight')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocomplete Related:
     set wildmenu " The nice tab completions at the command
@@ -88,8 +92,17 @@
         " set softtabstop=4
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keybinds:
+	" Coc:
+	inoremap <silent><expr> <TAB>
+    	  \ pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+	nnoremap <silent><nowait> <leader>ca  :<C-u>CocList diagnostics<cr>
+	nnoremap <silent><nowait> <leader>ce  :<C-u>CocList extensions<cr>
+	nnoremap <silent><nowait> <leader>cc  :<C-u>CocCommand<cr>
+	nnoremap <silent><nowait> <leader>ch  :CocCommand clangd.switchSourceHeader<cr>
+
 	" Plugin:
-	noremap <silent> <leader>u :UndotreeToggle<CR>
+	noremap <silent> <leader>uu :UndotreeToggle<CR>
 	noremap <silent> <leader>vs :vs<CR>
 	noremap <silent> <leader>ps :Rg<SPACE>
 	noremap <leader><CR> :term<CR>a
@@ -123,7 +136,7 @@
 	nnoremap <silent> <Up>	    :resize -2<CR>
 
     " Clears The Last Search:
-    nnoremap <leader><esc> :let @/ = ""<CR>
+    nnoremap <silent><nowait> <leader><esc> :let @/ = ""<CR>
 
     " Reindent File:
     noremap <leader>i gg=G<C-o>
@@ -151,8 +164,8 @@
 	tnoremap <m-q> <C-\><C-n>:bd!<CR>
 
 	" Outside Scripts:
-    noremap <leader>c :w! \| !compiler <c-r>%<CR>
-    noremap <leader>p :!opout <c-r>%<CR><CR>
+    noremap <leader>sc :w! \| !compiler <c-r>%<CR>
+    noremap <leader>sp :!opout <c-r>%<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusline:
     set laststatus=1
@@ -167,6 +180,6 @@
     let g:buftabline_numbers = 0
     let g:buftabline_indicators = 2
 
-	" FZF:
+" FZF:
 	let g:fzf_layout = { 'window' : { 'width': 0.8, 'height': 0.8 } }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -28,6 +28,7 @@ export LANG=en_US.UTF-8
 export PATH=/usr/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.cargo/bin
 # export PATH=$PATH:/usr/bin/core_perl
 #export PATH=$PATH:/usr/bin/site_perl
 #export PATH=$PATH:/usr/bin/vendor_perl
