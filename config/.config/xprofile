@@ -1,6 +1,6 @@
 #!/bin/sh
 
-picom -b --experimental-backends -o 0 --refresh-rate 75 --backend glx &
+# picom -b --experimental-backends -o 0 --refresh-rate 75 --backend glx &
 # Other Picom toggles: --vsync --no-fading-openclose
 # nvidia-settings --config="$XDG_CONFIG_HOME/nvidia-settings-rc" &
 weather &

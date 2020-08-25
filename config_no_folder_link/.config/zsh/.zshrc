@@ -14,10 +14,10 @@ zstyle ':vcs_info:*' enable git
 
 ## Setting prompt ##
 # Left
-PROMPT='%(?.%F{cyan}.%F{red})%B━%f%b ' # > ━❯ is an alternative prompt
+PROMPT='%(?.%F{yellow}.%F{red})%B❯%f%b ' # > ━❯ is an alternative prompt
 # Right
 RPROMPT=\$vcs_info_msg_0_ # Displays branch name of git repo if in one
-RPROMPT+='%F{green}%1~ ' # Display cwd
+RPROMPT+='%F{green}%1~' # Display cwd
 # RPROMPT+='%F{cyan}%T%f' # Display time (%T = 24h, %t = 12h)
 
 ## History: ##

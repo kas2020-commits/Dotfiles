@@ -4,7 +4,7 @@
     filetype plugin indent on
     let mapleader =" "
     set isfname-=$,=
-	set number relativenumber
+	set number " relativenumber
     set mouse=a " Mouse features set to all
     set encoding=utf-8
     set spelllang=en_us
@@ -17,25 +17,28 @@
     set termguicolors " Tell vim to use truecolor support
     set linebreak " Makes line wrapping better
     set textwidth=80 " Max line width before linebreak is triggered
-    set nowrap " same as linebreak but uses terminal width
+    set wrap " same as linebreak but uses terminal width
     set updatetime=50
     set colorcolumn=80
     autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
     set autochdir
 	set incsearch
-	" set guicursor=i:hor2
 	set guicursor=
 	set noswapfile
 	set nobackup
+	set foldenable
+	set foldmethod=syntax
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
     call plug#begin()
         " Themes:
+			" Plug 'nanotech/jellybeans.vim'
             " Plug 'gruvbox-community/gruvbox'
-			Plug 'dracula/vim'
+			" Plug 'dracula/vim'
+			" Plug 'joshdick/onedark.vim'
 			" Plug 'arcticicestudio/nord-vim'
+			Plug 'lifepillar/vim-solarized8'
         " Assthetic:
-			Plug 'norcalli/nvim-colorizer.lua'
             Plug 'ap/vim-buftabline'
 			Plug 'sheerun/vim-polyglot'
         " Functional:
@@ -46,19 +49,22 @@
 			Plug 'jremmen/vim-ripgrep'
 			Plug 'rust-lang/rust.vim'
     call plug#end()
-	lua require'colorizer'.setup()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colorscheme:
 	" let g:gruvbox_contrast_dark='hard'
 	" let g:gruvbox_invert_selection='0'
+	" let g:onedark_terminal_italics=1
+	" let g:jellybeans_use_term_italics = 1
+	" let g:jellybeans_use_gui_italics = 1
+	let g:solarized_enable_extra_hi_groups = 0
 
 	" if exists('+termguicolors')
     	" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     	" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	" endif
+
 	" set background=dark
-	" colorscheme gruvbox
-	colorscheme dracula
+	colorscheme solarized8_high
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Related:
 "
@@ -75,7 +81,7 @@
 	set wildmode=full
     set ignorecase " Ignore case sensitivity when searching
     set smartcase " Tries to be smart about searching
-    set hidden
+    " set hidden
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fileype Specific:
     autocmd BufWritePost *Xresources !xrdb %
@@ -92,7 +98,8 @@
         " set softtabstop=4
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keybinds:
-	" Coc:
+
+" Coc:
 	inoremap <silent><expr> <TAB>
     	  \ pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -100,8 +107,13 @@
 	nnoremap <silent><nowait> <leader>ce  :<C-u>CocList extensions<cr>
 	nnoremap <silent><nowait> <leader>cc  :<C-u>CocCommand<cr>
 	nnoremap <silent><nowait> <leader>ch  :CocCommand clangd.switchSourceHeader<cr>
+	" GoTo Code Navigation:
+	nmap <silent> <leader>gd <Plug>(coc-definition)
+	nmap <silent> <leader>gi <Plug>(coc-implementation)
+	nmap <silent> <leader>gr <Plug>(coc-references)
+	nnoremap <buffer> <leader>cr :CocRestart<CR>
 
-	" Plugin:
+" Plugin:
 	noremap <silent> <leader>uu :UndotreeToggle<CR>
 	noremap <silent> <leader>vs :vs<CR>
 	noremap <silent> <leader>ps :Rg<SPACE>
@@ -110,14 +122,6 @@
 
 	" Godly Ripgrep Search:
 	nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
-	nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
-
-	" GoTo Code Navigation:
-	nmap <silent> <leader>gd <Plug>(coc-definition)
-	nmap <silent> <leader>gy <Plug>(coc-type-definition)
-	nmap <silent> <leader>gi <Plug>(coc-implementation)
-	nmap <silent> <leader>gr <Plug>(coc-references)
-	nnoremap <buffer> <leader>cr :CocRestart<CR>
 
 	" Window Management:
 	nnoremap <C-c> <nop>
