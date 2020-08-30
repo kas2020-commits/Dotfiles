@@ -9,7 +9,7 @@
     set encoding=utf-8
     set spelllang=en_us
     set cursorline " Changes the line the cursor is on
-	set cursorcolumn "
+	set cursorcolumn
     set ruler " Always show cursor location on bottom-right
     set scrolloff=4 " how many lines does the cursor need as cushion space
     set clipboard=unnamedplus
@@ -33,11 +33,11 @@
     call plug#begin()
         " Themes:
 			" Plug 'nanotech/jellybeans.vim'
-            " Plug 'gruvbox-community/gruvbox'
+            Plug 'gruvbox-community/gruvbox'
 			" Plug 'dracula/vim'
 			" Plug 'joshdick/onedark.vim'
 			" Plug 'arcticicestudio/nord-vim'
-			Plug 'lifepillar/vim-solarized8'
+			" Plug 'lifepillar/vim-solarized8'
         " Assthetic:
             Plug 'ap/vim-buftabline'
 			Plug 'sheerun/vim-polyglot'
@@ -51,23 +51,19 @@
     call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colorscheme:
-	" let g:gruvbox_contrast_dark='hard'
-	" let g:gruvbox_invert_selection='0'
-	" let g:onedark_terminal_italics=1
-	" let g:jellybeans_use_term_italics = 1
-	" let g:jellybeans_use_gui_italics = 1
-	let g:solarized_enable_extra_hi_groups = 0
+	let g:gruvbox_contrast_dark='hard'
+	let g:gruvbox_invert_selection=1
+	let g:gruvbox_italic=1
+	let g:gruvbox_improved_strings=1
+	let g:gruvbox_improved_warnings=1
+	" let g:solarized_enable_extra_hi_groups = 0
 
-	" if exists('+termguicolors')
-    	" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    	" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-	" endif
-
-	" set background=dark
-	colorscheme solarized8_high
+	set background=dark
+	" colorscheme solarized8_high
+	colorscheme gruvbox
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Related:
-"
+
 	function! s:check_back_space() abort
 		let col = col('.') - 1
 		return !col || getline('.')[col - 1]  =~# '\s'
@@ -154,9 +150,6 @@
     nnoremap Y y$
     noremap <m-k> <C-u>
     noremap <m-j> <C-d>
-	nnoremap Q <nop>
-	nnoremap Q :q<CR>
-    noremap <leader>w :w!<CR>
     noremap <leader>o :setlocal spell! spelllang=en_us<CR>
 
 	" Shift Text:
@@ -164,8 +157,9 @@
 	xnoremap J :move '>+1<CR>gv-gv
 
 	" Terminal:
-	tnoremap <Esc> <C-\><C-n>
+	" tnoremap <Esc> <C-\><C-n>
 	tnoremap <m-q> <C-\><C-n>:bd!<CR>
+	tnoremap <Esc> <C-d>
 
 	" Outside Scripts:
     noremap <leader>sc :w! \| !compiler <c-r>%<CR>
@@ -178,12 +172,11 @@
 	set statusline+=\ %=\ line:%l/%L\ col:%c
 	set statusline+=\ \ %p%%
 
-" Plugin Settings:
-	" Buftabline:
+" Bufftabline:
 	let g:buftabline_show = 2
     let g:buftabline_numbers = 0
-    let g:buftabline_indicators = 2
+    let g:buftabline_indicators = 1
 
 " FZF:
-	let g:fzf_layout = { 'window' : { 'width': 0.8, 'height': 0.8 } }
+	" let g:fzf_layout = { 'window' : { 'width': 0.8, 'height': 0.8 } }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
