@@ -16,4 +16,4 @@ stow -t ~ config config_no_folder_link local
 ## Home links that need to be made ##
 ln -fs "${HOME}/.config/zprofile" 		"$HOME"/.zprofile
 ln -fs "${HOME}/.config/xinitrc"  		"$HOME"/.xinitrc
-ln -fs "${HOME}/.config/task/taskrc"  	"$HOME"/.taskrc
+# ln -fs "${HOME}/.config/task/taskrc"  	"$HOME"/.taskrc
