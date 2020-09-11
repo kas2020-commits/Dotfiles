@@ -13,6 +13,7 @@ export BROWSER="firefox"
 export VIDEO="mpv"
 export COLORTERM="truecolor"
 export OPENER="xdg-open"
+export CM_LAUNCHER="rofi"
 
 # ~/ Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"

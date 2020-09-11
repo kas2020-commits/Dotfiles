@@ -1,18 +1,18 @@
 ## Git Integration ##
-# autoload -Uz vcs_info
-# precmd_vcs_info() { vcs_info }
-# precmd_functions+=( precmd_vcs_info )
-# setopt prompt_subst
-# zstyle ':vcs_info:git:*' formats '%F{yello}%b%f '
-# zstyle ':vcs_info:*' enable git
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+zstyle ':vcs_info:git:*' formats "%F{green}%b%f "
+zstyle ':vcs_info:*' enable git
 
 ## Setting prompt ##
-# Left
-PROMPT='%(?.%F{yellow}.%F{red})%B━%f%b ' # > ━❯ is an alternative prompt
-# Right
-# RPROMPT=\$vcs_info_msg_0_ # Displays branch name of git repo if in one
-RPROMPT='%F{green}%1~' # Display cwd
-# RPROMPT+='%F{cyan}%T%f' # Display time (%T = 24h, %t = 12h)
+# PROMPT='%(?.%F{green}.%F{red})%B━%f%b ' # > ━❯ is an alternative prompt
+# RPROMPT='%F{cyan}[%2~]' # > ━❯ is an alternative prompt
+RPROMPT=\$vcs_info_msg_0_ # Displays branch name of git repo if in one
+PROMPT='%F{green}%1~ %(?.%F{green}.%F{red})%B❯ %f%b '
+# RPROMPT+='%F{green}%1~' # Display cwd
+RPROMPT+='%F{green}[%T]' # Display time (%T = 24h, %t = 12h)
 
 ## History: ##
 # setopt HIST_EXPIRE_DUPS_FIRST # expire duplicates first
@@ -39,15 +39,15 @@ _comp_options+=(globdots)       #Include hidden files
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 # # vi mode ##
-#  bindkey -v
-#  export KEYTIMEOUT=1
+ bindkey -v
+ export KEYTIMEOUT=1
 
 ## Use vim keys in tab complete menu: ##
-# bindkey -M menuselect 'h' vi-backward-char
-# bindkey -M menuselect 'l' vi-forward-char
-# bindkey -M menuselect 'k' vi-up-line-or-history
-# bindkey -M menuselect 'j' vi-down-line-or-history
-# bindkey -v '^?' backward-delete-char
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
 
 # # Change cursor shape for different vi modes.
 # function zle-keymap-select {
@@ -74,7 +74,6 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 
 # Basic
 alias ls="ls -A --color=auto --group-directories-first"
-alias grep="rg"
 alias hg="history | grep -i"
 
 # Git-related
@@ -84,7 +83,8 @@ alias gm="git commit -m"
 alias gi="git clean --interactive"
 
 # Shortcuts
-alias make="make -j"
+alias make="make -j8"
+alias R="R --quiet"
 
 se () {
 	fd -H -E .git -t f . | fzf | xargs -r "$EDITOR"
