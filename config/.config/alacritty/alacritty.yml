@@ -1,6 +1,6 @@
 window:
   dimensions:
-    columns: 81
+    columns: 80
     lines: 24
 
   # Window padding (changes require restart)
@@ -8,8 +8,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-      x: 1
-      y: 1
+      x: 0
+      y: 0
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -23,7 +23,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Ttle bar, transparent background, but no title bar buttons
-  decorations: full
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -34,7 +34,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Windowed
+  startup_mode: Maximized
 
   # Window title
   #title: Alacritty
@@ -64,17 +64,17 @@ scrolling:
 #Font configuration
 font:
   normal:
-    family: JetBrains Mono
-    style: Regular
-  bold:
-    family: JetBrains Mono
-    style: Bold
-  italic:
-    family: JetBrains Mono
-    style: Italic
+    family: Inconsolata
+    style: Medium
+  # bold:
+  #   family: Inconsolata
+  #   style: Bold
+  # italic:
+  #   family: JetBrains Mono NL
+  #   style: Italic
 
   # Point size
-  size: 11
+  size: 12
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -195,33 +195,59 @@ draw_bold_text_with_bright_colors: true
 #     cyan:    '#2aa198'
 #     white:   '#fdf6e3'
 
+# Google Dark Scheme:
+# colors:
+#   primary:
+#     background: '#1d1f21'
+#     foreground: '#c5c8c6'
+#   cursor:
+#     text:       '#44475a'
+#     cursor:     '#f8f8f2'
+#   normal:
+#     black:      '#1d1f21'
+#     red:        '#cc342b'
+#     green:      '#198844'
+#     yellow:     '#fba922'
+#     blue:       '#3971ed'
+#     magenta:    '#a36ac7'
+#     cyan:       '#00ccff'
+#     white:      '#c5c8c6'
+#   bright:
+#     black:      '#333333'
+#     red:        '#cc342b'
+#     green:      '#198844'
+#     yellow:     '#fba922'
+#     blue:       '#3971ed'
+#     magenta:    '#a36ac7'
+#     cyan:       '#00ccff'
+#     white:      '#ffffff'
 
-Google Dark Scheme:
+Blossom Scheme:
 colors:
   primary:
-    background: '#1d1f21'
-    foreground: '#c5c8c6'
+    background: '#22272C'
+    foreground: '#F2F2F4'
   cursor:
     text:       '#44475a'
     cursor:     '#f8f8f2'
   normal:
-    black:      '#1d1f21'
-    red:        '#cc342b'
-    green:      '#198844'
-    yellow:     '#fba922'
-    blue:       '#3971ed'
-    magenta:    '#a36ac7'
-    cyan:       '#00ccff'
-    white:      '#c5c8c6'
+    black:      '#445158'
+    red:        '#FF6565'
+    green:      '#2CC46E'
+    yellow:     '#ECC46F'
+    blue:       '#6F97EC'
+    magenta:    '#FA5477'
+    cyan:       '#64B9F2'
+    white:      '#D2D2D4'
   bright:
-    black:      '#333333'
-    red:        '#cc342b'
-    green:      '#198844'
-    yellow:     '#fba922'
-    blue:       '#3971ed'
-    magenta:    '#a36ac7'
-    cyan:       '#00ccff'
-    white:      '#ffffff'
+    black:      '#5E6B72'
+    red:        '#FF7272'
+    green:      '#46DE88'
+    yellow:     '#FFDE89'
+    blue:       '#89B1FF'
+    magenta:    '#FF6E91'
+    cyan:       '#71C6FF'
+    white:      '#F1F1F3'
 
 background_opacity: 1
 
@@ -232,14 +258,14 @@ selection:
   save_to_clipboard: true
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
+window.dynamic_title: true
 
 cursor:
   # Values for `style`:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  style: Block
+  style: Underline
   unfocused_hollow: false
 
 # Live config reload (changes require restart)

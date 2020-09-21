@@ -3,16 +3,16 @@ autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-zstyle ':vcs_info:git:*' formats "%F{green}%b%f "
+zstyle ':vcs_info:git:*' formats "%F{yellow}[%b]%f"
 zstyle ':vcs_info:*' enable git
 
 ## Setting prompt ##
 # PROMPT='%(?.%F{green}.%F{red})%B━%f%b ' # > ━❯ is an alternative prompt
 # RPROMPT='%F{cyan}[%2~]' # > ━❯ is an alternative prompt
 RPROMPT=\$vcs_info_msg_0_ # Displays branch name of git repo if in one
-PROMPT='%F{green}%1~ %(?.%F{green}.%F{red})%B❯ %f%b '
+PROMPT='%(?.%F{green}.%F{red})$ %f '
 # RPROMPT+='%F{green}%1~' # Display cwd
-RPROMPT+='%F{green}[%T]' # Display time (%T = 24h, %t = 12h)
+RPROMPT+='%F{blue}[%1~]%F{cyan}[%T]%f' # Display time (%T = 24h, %t = 12h)
 
 ## History: ##
 # setopt HIST_EXPIRE_DUPS_FIRST # expire duplicates first
@@ -87,7 +87,7 @@ alias make="make -j16"
 alias R="R --quiet"
 
 se () {
-	fd -H -E .git -t f . | fzf | xargs -r "$EDITOR"
+	fd -H -E .git -t f . | fzf | xargs -r "nvim"
 }
 cd_with_fzf() {
     cd $HOME && cd "$(fd -E .git -H -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"

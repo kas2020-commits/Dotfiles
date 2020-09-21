@@ -18,12 +18,14 @@ set incsearch
 set noswapfile nobackup
 set foldenable foldmethod=syntax
 set hidden " To use buffers without having to write to file
+set autochdir
 " set cursorline cursorcolumn " Sets crossairs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
 call plug#begin()
 " Themes:
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 " Plug 'tomasiser/vim-code-dark'
 " Assthetic:
@@ -35,10 +37,17 @@ Plug 'jremmen/vim-ripgrep'
 " Plug 'junegunn/fzf.vim'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Gruvbox Specifics:
+let g:gruvbox_italic=1
+let g:gruvbox_inverse=1
+let g:gruvbox_bold=1
+let g:gruvbox_contrast_dark = 'medium'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colorscheme:
 set background=dark
 set termguicolors " Tell vim to use truecolor support
-colorscheme base16-classic-dark
+" colorscheme base16-classic-dark
+colorscheme gruvbox
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocomplete Related:
 set wildmenu " The nice tab completions at the command
@@ -81,7 +90,7 @@ noremap <leader>lp :!opout <c-r>%<CR><CR>
 " Plugin:
 noremap <silent><leader>vs :vs<CR>
 noremap <silent><leader>ps :Rg<SPACE>
-noremap <silent><m-p> :NERDTreeToggleVCS<CR> :vertical resize 15<CR>
+noremap <silent><m-p> :NERDTreeToggleVCS<CR> :vertical resize 20<CR>
 noremap <silent><C-p> :FZF<CR>
 
 " Window Management:
@@ -90,8 +99,8 @@ noremap  <silent><leader>h 	:wincmd h<CR>
 noremap  <silent><leader>l	:wincmd l<CR>
 noremap  <silent><leader>j 	:wincmd j<CR>
 noremap  <silent><leader>k   	:wincmd k<CR>
-nnoremap <silent><C-h> 	:vertical resize +2<CR>
-nnoremap <silent><C-l> 	:vertical resize -2<CR>
+nnoremap <silent><C-l> 	:vertical resize +2<CR>
+nnoremap <silent><C-h> 	:vertical resize -2<CR>
 nnoremap <silent><C-j> 	:resize +2<CR>
 nnoremap <silent><C-k> 	:resize -2<CR>
 
@@ -119,13 +128,6 @@ noremap Q :q<CR>
 noremap <leader><CR> :vertical split term://zsh<CR>a
 tnoremap <Esc> <C-\><C-n>
 tnoremap <m-q> <C-\><C-n>:bd!<CR>
-
-" Better Wrapping:
-noremap <expr> G &wrap ? "G$g0" : "G"
-noremap <expr> 0 &wrap ? 'g0' : '0'
-noremap <expr> $ &wrap ? "g$" : "$"
-noremap <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <expr> k (v:count == 0 ? 'gk' : 'k')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusline:
 set laststatus=2
