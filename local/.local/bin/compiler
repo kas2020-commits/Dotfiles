@@ -23,5 +23,6 @@ case "$file" in
 	*\.py) python "$file" ;;
 	*\.m) octave "$file" ;;
 	*\.rs) cargo run ;;
+	*\.R) R < "$file" --no-save ;;
 esac
 
