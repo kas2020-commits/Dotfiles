@@ -3,24 +3,24 @@ syntax on
 filetype plugin indent on
 set encoding=utf-8 spelllang=en_us
 set termguicolors
+set mouse=a
+set clipboard=unnamedplus
+set splitbelow splitright
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Native Settings:
 let mapleader =" "
-set mouse=a " Mouse features set to all
 set scrolloff=2 " how many lines does the cursor need as cushion space
-set clipboard=unnamedplus " Makes yanking/pasting to global clipboard
-set splitbelow splitright " set splitting to be more normal:
-set textwidth=80 " Max line width before linebreak is triggered
 set linebreak " Wrap uses terminal width; linebreak uses specified width
 set updatetime=50
+set textwidth=80 " Max line width before linebreak is triggered
 set colorcolumn=80
-set incsearch
-set noswapfile nobackup
+set incsearch " Incremental search when using /
 set foldenable foldmethod=syntax
-set hidden " To use buffers without having to write to file
-set expandtab tabstop=2 shiftwidth=2 softtabstop=2
-set wildmenu wildmode=full ignorecase smartcase
-set laststatus=1
+set expandtab tabstop=2 shiftwidth=2 softtabstop=2 " Settings for tabs
+set wildmenu wildmode=full ignorecase smartcase " Settings for ':'
+set laststatus=1 " disables the statusline when only 1 window tab being used
+set noswapfile autowriteall " Settings for writing to disk
+set titlestring=%t title " sets the title of the terminal to be the filename
 " set cursorline cursorcolumn " Sets crossairs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
@@ -40,8 +40,6 @@ let g:gruvbox_italic=1
 let g:gruvbox_inverse=1
 let g:gruvbox_bold=1
 let g:gruvbox_contrast_dark = 'medium'
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
