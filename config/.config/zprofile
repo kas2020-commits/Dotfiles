@@ -1,13 +1,11 @@
 #!/bin/sh
 typeset -U PATH path
 
-export VISUAL="nvim"
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+
 export EDITOR="nvim"
 export READER="zathura"
-# export READER="evince"
 export FILE="nnn"
-export TERMINAL="st"
-export TERMINAL_ALT="alacritty"
 export TERM="xterm-color"
 export BROWSER="brave"
 export VIDEO="mpv"
@@ -17,10 +15,9 @@ export CM_LAUNCHER="rofi"
 
 # ~/ Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
-export LESSHISTFILE="-"
+export LESSHISTFILE=-
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
-# export TASKRC="$XDG_CONFIG_HOME/task/taskrc"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -30,10 +27,6 @@ export PATH=/usr/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.cargo/bin
-# export PATH=$PATH:/usr/bin/core_perl
-#export PATH=$PATH:/usr/bin/site_perl
-#export PATH=$PATH:/usr/bin/vendor_perl
-#export PATH=$PATH:/usr/local/sbin
 
 ## Command options ##
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
