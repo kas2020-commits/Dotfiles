@@ -7,6 +7,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 " Plug 'junegunn/fzf.vim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Never Touch:
@@ -18,7 +19,7 @@ set splitbelow splitright
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Native Settings:
 let mapleader =" "
-set scrolloff=2 " how many lines does the cursor need as cushion space
+set scrolloff=4 " how many lines does the cursor need as cushion space
 set linebreak " Wrap uses terminal width; linebreak uses specified width
 set updatetime=50
 set textwidth=80 " Max line width before linebreak is triggered
@@ -31,6 +32,8 @@ set laststatus=1 " disables the statusline when only 1 window tab being used
 set noswapfile autowrite " Settings for writing to disk
 set titlestring=%t title " sets the title of the terminal to be the filename
 set list " This will list out certain characters like tabs or newline
+set noshowmode
+set completeopt=menuone,noinsert,noselect
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pluggin Settings:
 let g:buftabline_indicators=1
@@ -38,6 +41,7 @@ let g:gruvbox_italic=1
 let g:gruvbox_inverse=1
 let g:gruvbox_bold=1
 let g:gruvbox_contrast_dark = 'medium'
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Initialize Plugins:
 colorscheme gruvbox
@@ -46,8 +50,8 @@ colorscheme gruvbox
 " on_attach=require'completion'.on_attach
 " Also, for rust_analyzer, you could also use rls instead
 lua <<EOF
-require'nvim_lsp'.clangd.setup{}
-require'nvim_lsp'.rls.setup{}
+require'nvim_lsp'.clangd.setup{ on_attach=require'completion'.on_attach }
+require'nvim_lsp'.rls.setup{ on_attach=require'completion'.on_attach }
 EOF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocommands:
