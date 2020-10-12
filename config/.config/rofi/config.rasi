@@ -1,0 +1,9 @@
+configuration {
+	modi: "window,drun,ssh";
+	lines: 5;
+	font: "Fira Code Medium 20";
+	show-icons: true;
+	terminal: "st";
+	eh: 2;
+	theme: "~/.config/rofi/Arc-Dark.rasi";
+}

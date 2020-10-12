@@ -7,10 +7,10 @@ super + m
 super + r
 	$TERMINAL -e $FILE
 
-super + shift + w
+super + w
 	$BROWSER
 
-super + p
+alt + Return
 	rofi -show drun
 
 ctrl + alt + l
@@ -18,9 +18,8 @@ ctrl + alt + l
 
 Print
 	flameshot full --path ~/Pictures/Screenshots
-# 	scrot '%Y%m%d-%T.png' -e 'mv $f ~/Pictures/Screenshots/'
 
-super + Insert
+super + p
 	clipmenu -i -p "Clipboard" -l 20
 
 ctrl + alt + Delete

@@ -1,11 +1,10 @@
 " Load Plugins:
 call plug#begin()
 Plug 'morhetz/gruvbox'
-Plug 'preservim/nerdtree'
 Plug 'ap/vim-buftabline'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 call plug#end()
@@ -74,8 +73,8 @@ noremap <leader>vs :vs<CR>
 noremap <leader>ps :Rg<SPACE>
 noremap <leader><esc> :let @/ = ""<CR>
 " Control:
-noremap <silent><C-l> :wincmd h<CR>
-noremap <silent><C-h> :wincmd l<CR>
+noremap <silent><C-l> :wincmd l<CR>
+noremap <silent><C-h> :wincmd h<CR>
 noremap <silent><C-j> :wincmd j<CR>
 noremap <silent><C-k> :wincmd k<CR>
 noremap <silent><C-p> :NERDTreeToggleVCS<CR> :vertical resize 20<CR>
