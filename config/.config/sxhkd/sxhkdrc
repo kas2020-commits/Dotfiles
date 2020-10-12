@@ -1,49 +1,42 @@
-# basic binds
 super + Return
-    $TERMINAL
+	$TERMINAL
 
 super + m
-    $TERMINAL -e cmus
+	$TERMINAL -e cmus
 
 super + r
-    $TERMINAL -e $FILE
+	$TERMINAL -e $FILE
 
 super + shift + w
-    $BROWSER
+	$BROWSER
 
 super + p
 	rofi -show drun
 
 ctrl + alt + l
-    $HOME/.config/i3lock/beut.sh
+	$HOME/.config/i3lock/beut.sh
 
 Print
 	flameshot full --path ~/Pictures/Screenshots
-    # scrot '%Y%m%d-%T.png' -e 'mv $f ~/Pictures/Screenshots/'
+# 	scrot '%Y%m%d-%T.png' -e 'mv $f ~/Pictures/Screenshots/'
 
 super + Insert
-    clipmenu -i -p "Clipboard" -l 20
-
-super + shift + y
-    youtube.sh
+	clipmenu -i -p "Clipboard" -l 20
 
 ctrl + alt + Delete
-    power-management
+	power-management
 
-# Audiokeys
 XF86AudioMute
-    pactl set-sink-mute @DEFAULT_SINK@ toggle; refreshbar
+	pactl set-sink-mute @DEFAULT_SINK@ toggle; refreshbar
 
 XF86Audio{Raise,Lower}Volume
-    pamixer -{i,d} 5; refreshbar
-	# pactl set-sink-volume 0 {+,-}5%; refreshbar
+	pamixer -{i,d} 5; refreshbar
 
 XF86Audio{Play,Pause,Next,Prev}
-    playerctl {play-pause,play-pause,next,previous}
+	playerctl {play-pause,play-pause,next,previous}
 
-# # Brightness controls
-# XF86MonBrightnessUp
-#     sudo /usr/local/bin/brightness/Bright_Up.sh
+XF86MonBrightnessUp
+	light -A 10
 
-# XF86MonBrightnessDown
-#     sudo /usr/local/bin/brightness/Bright_Down.sh
+XF86MonBrightnessDown
+	light -U 10

@@ -6,6 +6,7 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export EDITOR="nvim"
 export READER="zathura"
 export FILE="nnn"
+export TERMINAL="alacritty"
 export TERM="xterm-color"
 export BROWSER="brave"
 export VIDEO="mpv"
