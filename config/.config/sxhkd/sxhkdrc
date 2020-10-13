@@ -1,14 +1,11 @@
 super + Return
 	$TERMINAL
 
-super + m
+super + c
 	$TERMINAL -e cmus
 
-super + r
+super + m
 	$TERMINAL -e $FILE
-
-super + w
-	$BROWSER
 
 alt + Return
 	rofi -show drun
