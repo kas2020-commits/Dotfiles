@@ -8,7 +8,7 @@ maximum.
 
 To install:
 ```
-$ ./install
+$ ./install.sh
 ```
 
 Make sure GNU Stow is installed and set in the system **PATH**
