@@ -32,7 +32,7 @@ XF86Audio{Play,Pause,Next,Prev}
 	playerctl {play-pause,play-pause,next,previous}
 
 XF86MonBrightnessUp
-	light -A 10
+	light -A 10; refreshbar
 
 XF86MonBrightnessDown
-	light -U 10
+	light -U 10; refreshbar

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+file=$(readlink -f "$1")
+dir=$(dirname "$file")
+base="${file%.*}"
+
+cd "$dir" || exit
+
+rm -f "${base}".log "${base}".aux "${base}".out

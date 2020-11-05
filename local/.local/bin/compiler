@@ -8,10 +8,7 @@ cd "$dir" || exit
 
 textype() { \
 	command="pdflatex"
-	$command --output-directory="$dir" "$base" &&
-		rm "${base}".log &&
-		rm "${base}".aux &&
-		rm "${base}".out
+	$command --output-directory="$dir" "$base"
 	}
 
 case "$file" in

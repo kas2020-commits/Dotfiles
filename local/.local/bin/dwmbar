@@ -9,13 +9,10 @@ kerver=" $(uname -r)"
 # checkupdates | wc -l > "${HOME}/.local/share/arch_updates"
 
 while :; do
-	# weather="$(head ${HOME}/.local/share/weatherreport)"
 	# updates=" $(head ${HOME}/.local/share/arch_updates)"
 	# mem=" $(free -h | awk '/^Mem:/ {print $3}' | sed "s/Gi/G/g")"
 	# temp=" $(sensors | awk '/^Tdie/ {print $2}' | sed "s/+//")"
 	vol_percent="$(pamixer --get-volume-human)"
-	# vol="  ${vol_percent}"
-
 	if [ "$vol_percent" = "muted" ]; then
 		vol=" ${vol_percent}"
 	else
@@ -24,6 +21,8 @@ while :; do
 
 	date=" $(date '+%b %d (%a)')"
 	time=" $(date '+%I:%M %p')"
-	xsetroot -name " ${kerver}${sep}${vol}${sep}${date}${sep}${time}"
+	battery="$(battery)"
+	brightness=" $(light)%"
+	xsetroot -name "${kerver}${sep}${brightness}${sep}${vol}${sep}${date}${sep}${time}${sep}${battery}"
 	sleep 1m
 done

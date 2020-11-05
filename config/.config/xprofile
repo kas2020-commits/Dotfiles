@@ -1,9 +1,8 @@
 #!/bin/sh
 
-picom --experimental-backends -o 0 --backend glx --glx-no-stencil &
+# picom --experimental-backends -o 0 --backend glx --glx-no-stencil --no-fading-openclose &
 # Other Picom toggles: -b --vsync --no-fading-openclose --refresh-rate 75
 # nvidia-settings --config="$XDG_CONFIG_HOME/nvidia-settings-rc" &
-# weather &
 dwmbar &
 clipmenud &
 sxhkd &

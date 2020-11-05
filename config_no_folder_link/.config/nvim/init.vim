@@ -29,8 +29,8 @@ set laststatus=1 " disables the statusline when only 1 window tab being used
 set noswapfile autowrite " Settings for writing to disk
 set titlestring=%t title " sets the title of the terminal to be the filename
 set list " This will list out certain characters like tabs or newline
-set noshowmode
 set completeopt=menuone,noinsert,noselect
+set guicursor=v-c:block,i-ci-ve:ver25,n-r-cr-o:hor20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc:
 let mapleader =" "
@@ -69,7 +69,8 @@ nnoremap <silent> <leader><CR>  <cmd>split term://zsh<CR> <cmd>resize 15<CR>a
 nnoremap <silent> <leader><esc> <cmd>let @/ = ""<CR>
 nnoremap <silent> <leader>i     gg=G
 nnoremap <silent> <leader>o     <cmd>setlocal spell! spelllang=en_us<CR>
-nnoremap <silent> <leader>c     <cmd>update<CR><cmd>!compiler <c-r>%<CR>
+nnoremap <silent> <leader>c     <cmd>update<CR>:!compiler <c-r>%<CR>
+nnoremap <silent> <leader>m     <cmd>!texclear %<CR><CR>
 nnoremap <silent> <leader>p     <cmd>!opout %<CR><CR>
 nnoremap <silent> <leader>s     <cmd>vs<CR>
 nnoremap <silent> <leader>l     <cmd>wincmd l<CR>
@@ -77,17 +78,17 @@ nnoremap <silent> <leader>h     <cmd>wincmd h<CR>
 nnoremap <silent> <leader>j     <cmd>wincmd j<CR>
 nnoremap <silent> <leader>k     <cmd>wincmd k<CR>
 " Control:
-nnoremap <silent> <C-h>  <cmd>vertical resize +2<CR>
-nnoremap <silent> <C-l>  <cmd>vertical resize -2<CR>
-nnoremap <silent> <C-j>  <cmd>resize -2<CR>
-nnoremap <silent> <C-k>  <cmd>resize +2<CR>
+noremap <silent> <C-h>  <cmd>vertical resize +2<CR>
+noremap <silent> <C-l>  <cmd>vertical resize -2<CR>
+noremap <silent> <C-j>  <cmd>resize -2<CR>
+noremap <silent> <C-k>  <cmd>resize +2<CR>
 " Alt:
-nnoremap <m-q> <cmd>bdelete<CR>
-nnoremap <m-l> <cmd>bnext<CR>
-nnoremap <m-h> <cmd>bprev<CR>
-nnoremap <m-k> <C-u>
-nnoremap <m-j> <C-d>
-nnoremap <m-p> <cmd>FZF<CR>
+noremap <m-q> <cmd>bdelete<CR>
+noremap <m-l> <cmd>bnext<CR>
+noremap <m-h> <cmd>bprev<CR>
+noremap <m-k> <C-u>
+noremap <m-j> <C-d>
+noremap <m-p> <cmd>FZF<CR>
 " UpperCase:
 nnoremap Y y$
 nnoremap W <cmd>update<CR>
