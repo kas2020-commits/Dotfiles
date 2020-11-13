@@ -252,7 +252,7 @@ colors:
 #     cyan:       '#71C6FF'
 #     white:      '#F1F1F3'
 
-background_opacity: 1
+background_opacity: 0.9
 
 selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -268,8 +268,8 @@ cursor:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  style: Underline
-  unfocused_hollow: false
+  style: Block
+  unfocused_hollow: true
 
 # Live config reload (changes require restart)
 live_config_reload: true

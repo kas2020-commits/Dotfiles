@@ -42,10 +42,12 @@ alias ls="ls -A --color=auto --group-directories-first"
 alias gs="git status"
 alias ga="git add ."
 alias gm="git commit -m"
-# alias make="make -j16"
+alias make="make -j16"
 alias R="R --quiet"
-# alias autoclean="sudo pacman -R $(pacman -Qdtq)"
 
+autoclean() {
+	sudo pacman -Rns $(pacman -Qdtq)
+}
 se() {
 	fd -H -E .git -t f . | fzf | xargs -r "$EDITOR"
 }
@@ -62,4 +64,4 @@ pacr() {
 
 bindkey -s "^f" 'cd_with_fzf^M'
 
-echo -ne '\e[4 q'
+# echo -ne '\e[4 q'

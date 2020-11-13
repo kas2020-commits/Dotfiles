@@ -25,4 +25,5 @@ fi
 # runs xprofile as an X autostart
 [ -f $xprofile ] && . $xprofile
 
-exec dwm
+# exec dwm
+exec xmonad

@@ -22,7 +22,7 @@ while :; do
 	date=" $(date '+%b %d (%a)')"
 	time=" $(date '+%I:%M %p')"
 	battery="$(battery)"
-	brightness=" $(light)%"
-	xsetroot -name "${kerver}${sep}${brightness}${sep}${vol}${sep}${date}${sep}${time}${sep}${battery}"
+	# brightness=" $(light)%"
+	xsetroot -name "${kerver}${sep}${vol}${sep}${date}${sep}${time}${sep}${battery}"
 	sleep 1m
 done

@@ -16,7 +16,7 @@ set termguicolors
 set mouse=a
 set clipboard=unnamedplus
 set splitbelow splitright
-set scrolloff=4 " how many lines does the cursor need as cushion space
+set scrolloff=2 " how many lines does the cursor need as cushion space
 set linebreak " Wrap uses terminal width; linebreak uses specified width
 set updatetime=50
 set textwidth=80 " Max line width before linebreak is triggered
@@ -30,7 +30,7 @@ set noswapfile autowrite " Settings for writing to disk
 set titlestring=%t title " sets the title of the terminal to be the filename
 set list " This will list out certain characters like tabs or newline
 set completeopt=menuone,noinsert,noselect
-set guicursor=v-c:block,i-ci-ve:ver25,n-r-cr-o:hor20
+" set guicursor=v-c:block,i-ci-ve:ver25,n-r-cr-o:hor20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc:
 let mapleader =" "

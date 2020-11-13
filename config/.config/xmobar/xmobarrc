@@ -1,0 +1,19 @@
+Config { font  = "xft:Fira Code:size=13:antialias=true:hinting=true"
+       , bgColor = "#222222"
+       , fgColor = "#dddddd"
+       , position = Top
+       , lowerOnStart = True
+       , hideOnStart = False
+       , allDesktops = True
+       , persistent = True
+       , iconRoot = "/home/kar/.config/xmobar/"  -- default: "."
+       , commands = [ Run Date "%b %d %Y, %H:%M:%S" "date" 10
+                    , Run Cpu ["-t", "cpu <bar> (<total>%)","-H","50","--high","red"] 10
+                    , Run Memory ["-t", "mem <usedbar> (<usedratio>%)"] 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "<icon=spaceinvader.xpm/> %StdinReader% }{ <fc=#ffff5f>%cpu%</fc> <fc=#ff5f87>%memory%</fc> <fc=#afd75f>%date%</fc>"
+       }
+
