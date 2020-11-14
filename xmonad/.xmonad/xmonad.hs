@@ -7,7 +7,6 @@ import qualified XMonad.StackSet as W
     -- Actions
 import XMonad.Actions.CopyWindow (kill1, killAllOtherCopies)
 import XMonad.Actions.CycleWS (moveTo, shiftTo, WSType(..), nextScreen, prevScreen)
-import XMonad.Actions.GridSelect
 import XMonad.Actions.MouseResize
 import XMonad.Actions.Promote
 import XMonad.Actions.RotSlaves (rotSlavesDown, rotAllDown)
@@ -33,9 +32,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.WorkspaceHistory
 
     -- Layouts
-import XMonad.Layout.GridVariants (Grid(Grid))
 import XMonad.Layout.SimplestFloat
-import XMonad.Layout.Spiral
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
@@ -83,19 +80,16 @@ myModMask = mod4Mask       -- Sets modkey to super/windows key
 -- myTerminal = "alacritty"   -- Sets default terminal
 
 myBorderWidth :: Dimension
-myBorderWidth = 4          -- Sets border width for windows
+myBorderWidth = 2          -- Sets border width for windows
 
 myNormColor :: String
-myNormColor   = "#000000"  -- Border color of normal windows
+myNormColor   = "#1d1d1d"  -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor  = "#dddddd"  -- Border color of focused windows
+myFocusColor  = "#0033ff"  -- Border color of focused windows
 
 altMask :: KeyMask
 altMask = mod1Mask         -- Setting this for use in xprompts
-
-windowCount :: X (Maybe String)
-windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 -- myStartupHook :: X ()
 -- myStartupHook = do
@@ -105,85 +99,39 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
           -- spawnOnce "kak -d -s mysession &"
           -- setWMName "LG3D"
 
-myColorizer :: Window -> Bool -> X (String, String)
-myColorizer = colorRangeFromClassName
-                  (0x28,0x2c,0x34) -- lowest inactive bg
-                  (0x28,0x2c,0x34) -- highest inactive bg
-                  (0xc7,0x92,0xea) -- active bg
-                  (0xc0,0xa7,0x9a) -- inactive fg
-                  (0x28,0x2c,0x34) -- active fg
+-- dtXPConfig :: XPConfig
+-- dtXPConfig = def
+--       { font                = "xft:Fira Code:size=80:antialias=true:hinting=true"
+--       , bgColor             = "#282c34"
+--       , fgColor             = "#bbc2cf"
+--       , bgHLight            = "#c792ea"
+--       , fgHLight            = "#000000"
+--       , borderColor         = "#535974"
+--       , promptBorderWidth   = 0
+--       , promptKeymap        = dtXPKeymap
+--       , position            = Top
+--      -- , position            = CenteredAt { xpCenterY = 0.3, xpWidth = 0.3 }
+--       , height              = 20
+--       , historySize         = 256
+--       , historyFilter       = id
+--       , defaultText         = []
+--       , autoComplete        = Just 100000  -- set Just 100000 for .1 sec
+--       , showCompletionOnTab = False
+--       -- , searchPredicate     = isPrefixOf
+--       , searchPredicate     = fuzzyMatch
+--       , defaultPrompter     = id $ map toUpper  -- change prompt to UPPER
+--       -- , defaultPrompter     = unwords . map reverse . words  -- reverse the prompt
+--       -- , defaultPrompter     = drop 5 .id (++ "XXXX: ")  -- drop first 5 chars of prompt and add XXXX:
+--       , alwaysHighlight     = True
+--       , maxComplRows        = Nothing      -- set to 'Just 5' for 5 rows
+--       }
 
--- gridSelect menu layout
-mygridConfig :: p -> GSConfig Window
-mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
-    { gs_cellheight   = 40
-    , gs_cellwidth    = 200
-    , gs_cellpadding  = 6
-    , gs_originFractX = 0.5
-    , gs_originFractY = 0.5
-    , gs_font         = myFont
-    }
-
-spawnSelected' :: [(String, String)] -> X ()
-spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
-    where conf = def
-                   { gs_cellheight   = 40
-                   , gs_cellwidth    = 200
-                   , gs_cellpadding  = 6
-                   , gs_originFractX = 0.5
-                   , gs_originFractY = 0.5
-                   , gs_font         = myFont
-                   }
-
-dtXPConfig :: XPConfig
-dtXPConfig = def
-      { font                = "xft:Fira Code:size=80:antialias=true:hinting=true"
-      , bgColor             = "#282c34"
-      , fgColor             = "#bbc2cf"
-      , bgHLight            = "#c792ea"
-      , fgHLight            = "#000000"
-      , borderColor         = "#535974"
-      , promptBorderWidth   = 0
-      , promptKeymap        = dtXPKeymap
-      , position            = Top
-     -- , position            = CenteredAt { xpCenterY = 0.3, xpWidth = 0.3 }
-      , height              = 20
-      , historySize         = 256
-      , historyFilter       = id
-      , defaultText         = []
-      , autoComplete        = Just 100000  -- set Just 100000 for .1 sec
-      , showCompletionOnTab = False
-      -- , searchPredicate     = isPrefixOf
-      , searchPredicate     = fuzzyMatch
-      , defaultPrompter     = id $ map toUpper  -- change prompt to UPPER
-      -- , defaultPrompter     = unwords . map reverse . words  -- reverse the prompt
-      -- , defaultPrompter     = drop 5 .id (++ "XXXX: ")  -- drop first 5 chars of prompt and add XXXX:
-      , alwaysHighlight     = True
-      , maxComplRows        = Nothing      -- set to 'Just 5' for 5 rows
-      }
-
--- The same config above minus the autocomplete feature which is annoying
--- on certain Xprompts, like the search engine prompts.
-dtXPConfig' :: XPConfig
-dtXPConfig' = dtXPConfig
-      { autoComplete        = Nothing
-      }
-
--- A list of all of the standard Xmonad prompts and a key press assigned to them.
--- These are used in conjunction with keybinding I set later in the config.
-promptList :: [(String, XPConfig -> X ())]
-promptList = [ ("m", manPrompt)          -- manpages prompt
-             , ("p", passPrompt)         -- get passwords (requires 'pass')
-             , ("g", passGeneratePrompt) -- generate passwords (requires 'pass')
-             , ("r", passRemovePrompt)   -- remove passwords (requires 'pass')
-             , ("s", sshPrompt)          -- ssh prompt
-             , ("x", xmonadPrompt)       -- xmonad prompt
-             ]
-
--- Same as the above list except this is for my custom prompts.
-promptList' :: [(String, XPConfig -> String -> X (), String)]
-promptList' = [ ("c", calcPrompt, "qalc")         -- requires qalculate-gtk
-              ]
+-- -- The same config above minus the autocomplete feature which is annoying
+-- -- on certain Xprompts, like the search engine prompts.
+-- dtXPConfig' :: XPConfig
+-- dtXPConfig' = dtXPConfig
+--       { autoComplete        = Nothing
+--       }
 
 calcPrompt c ans =
     inputPrompt c (trim ans) ?+ \input ->
@@ -231,27 +179,6 @@ dtXPKeymap = M.fromList $
      , (xK_Escape, quit)
      ]
 
--- -- This is the list of search engines that I want to use. Some are from
--- -- XMonad.Actions.Search, and some are the ones that I added above.
--- searchList :: [(String, S.SearchEngine)]
--- searchList = [ ("a", archwiki)
---              , ("d", S.duckduckgo)
---              , ("e", ebay)
---              , ("g", S.google)
---              , ("h", S.hoogle)
---              , ("i", S.images)
---              , ("n", news)
---              , ("r", reddit)
---              , ("s", S.stackage)
---              , ("t", S.thesaurus)
---              , ("v", S.vocabulary)
---              , ("b", S.wayback)
---              , ("u", urban)
---              , ("w", S.wikipedia)
---              , ("y", S.youtube)
---              , ("z", S.amazon)
---              ]
-
 -- myScratchPads :: [NamedScratchpad]
 -- myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
 --                 , NS "mocp" spawnMocp findMocp manageMocp
@@ -277,9 +204,6 @@ dtXPKeymap = M.fromList $
 -- mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 -- mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
--- mySpacing' :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
--- mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
-
 tall     = renamed [Replace "tall"]
            -- $ windowNavigation
            -- $ addTabs shrinkText myTabTheme
@@ -292,11 +216,11 @@ tabs     = renamed [Replace "tabs"]
            $ tabbed shrinkText myTabTheme
 
 myTabTheme = def { fontName            = myFont
-                 , activeColor         = "#46d9ff"
-                 , inactiveColor       = "#313846"
-                 , activeBorderColor   = "#46d9ff"
-                 , inactiveBorderColor = "#282c34"
-                 , activeTextColor     = "#282c34"
+                 , activeColor         = "#0033ff"
+                 , inactiveColor       = "#222222"
+                 , activeBorderColor   = "#000000"
+                 , inactiveBorderColor = "#000000"
+                 , activeTextColor     = "#dddddd"
                  , inactiveTextColor   = "#d0d0d0"
                  }
 
@@ -304,7 +228,7 @@ myTabTheme = def { fontName            = myFont
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
     { swn_font              = "xft:Ubuntu:bold:size=60"
-    , swn_fade              = 1.0
+    , swn_fade              = 1.5
     , swn_bgcolor           = "#1c1f24"
     , swn_color             = "#ffffff"
     }
@@ -337,14 +261,13 @@ myKeys =
 
     -- Kill windows
         , ("M-q", kill1)                         -- Kill the currently focused client
-        , ("M-S-a", killAll)                       -- Kill all windows on current workspace
+        -- , ("M-S-a", killAll)                     -- Kill all windows on current workspace
 
     -- Workspaces
-        , ("M-.", nextScreen)  -- Switch focus to next monitor
-        , ("M-,", prevScreen)  -- Switch focus to prev monitor
+        -- , ("M-.", nextScreen)  -- Switch focus to next monitor
+        -- , ("M-,", prevScreen)  -- Switch focus to prev monitor
 
     -- Floating windows
-        , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
         , ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile
         , ("M-S-t", sinkAll)                       -- Push ALL floating windows to tile
 
@@ -367,15 +290,9 @@ myKeys =
 
     -- Layouts
         , ("M-<Tab>", sendMessage NextLayout)           -- Switch to next layout
-        , ("M-C-M1-<Up>", sendMessage Arrange)
-        , ("M-C-M1-<Down>", sendMessage DeArrange)
         , ("M-b", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
         , ("M-S-<Space>", sendMessage ToggleStruts)     -- Toggles struts
         , ("M-S-n", sendMessage $ MT.Toggle NOBORDERS)  -- Toggles noborder
-
-    -- Increase/decrease windows in the master pane or the stack
-        , ("M-S-<Up>", sendMessage (IncMasterN 1))      -- Increase number of clients in master pane
-        , ("M-S-<Down>", sendMessage (IncMasterN (-1))) -- Decrease number of clients in master pane
 
     -- Window resizing
         , ("M-h", sendMessage Shrink)                   -- Shrink horiz window width
@@ -425,14 +342,13 @@ main = do
         , focusedBorderColor = myFocusColor
         , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = \x -> hPutStrLn xmproc x -- >> hPutStrLn xmproc1 x  >> hPutStrLn xmproc2 x
-                        , ppCurrent = xmobarColor "#ffffff" "" . wrap "[ " " ]" -- Current workspace in xmobar
+                        , ppCurrent = xmobarColor "#ffffff" "" . wrap "" "" -- Current workspace in xmobar
                         , ppVisible = xmobarColor "#000000" "" . wrap "" ""  -- Visible but not current workspace
                         , ppHidden = xmobarColor "#0099ff" "" . wrap "" ""   -- Hidden workspaces in xmobar
                         , ppHiddenNoWindows = xmobarColor "#222222" "" . wrap "" ""    -- Hidden workspaces (no windows)
                         , ppTitle = xmobarColor "#dddddd" "" . shorten 80     -- Title of active window in xmobar
                         , ppSep =  "<fc=#dddddd> | </fc>"                     -- Separators
                         , ppUrgent = xmobarColor "#000000" "" . wrap "!" "!"  -- Urgent workspace
-                        , ppExtras  = [windowCount]                           -- # of windows current workspace
                         , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
                         }
         } `additionalKeysP` myKeys

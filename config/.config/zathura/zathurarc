@@ -21,8 +21,8 @@ set highlight-active-color      "#83a598"
 set completion-bg               "#1d1f21"
 set completion-fg               "#ffffff"
 
-set recolor-lightcolor  "#002b36"
-set recolor-darkcolor   "#fdf6e3"
+set recolor-lightcolor  "#1d2021"
+set recolor-darkcolor   "#fbf1c7"
 
 set window-title-home-tilde true
 set statusbar-basename true

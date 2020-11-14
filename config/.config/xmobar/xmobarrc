@@ -1,4 +1,6 @@
+--
 Config { font  = "xft:Fira Code:size=13:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Font Awesome 5 Free Solid:size=13" ]
        , bgColor = "#222222"
        , fgColor = "#dddddd"
        , position = Top
@@ -7,13 +9,31 @@ Config { font  = "xft:Fira Code:size=13:antialias=true:hinting=true"
        , allDesktops = True
        , persistent = True
        , iconRoot = "/home/kar/.config/xmobar/"  -- default: "."
-       , commands = [ Run Date "%b %d %Y, %H:%M:%S" "date" 10
-                    , Run Cpu ["-t", "cpu <bar> (<total>%)","-H","50","--high","red"] 10
-                    , Run Memory ["-t", "mem <usedbar> (<usedratio>%)"] 10
+       -- , commands = [ Run Date "%b %d %Y, %H:%M:%S" "date" 10
+       , commands = [ Run Date "%D" "date" 10
+                    , Run Date "%H:%M:%S" "time" 10
+                    , Run Cpu ["-t", "cpu (<total>%)","-H","50","--high","red"] 10 -- <bar>
+                    , Run Memory ["-t", "mem (<usedratio>%)"] 10 -- <usedbar>
                     , Run StdinReader
+                    , Run Com "/bin/sh" ["-c", "pamixer --get-volume-human"] "myVolume" 10
+                    , Run Battery        [ "--template" , "<acstatus>"
+                                         , "--Low"      , "10"        -- units: %
+                                         , "--High"     , "80"        -- units: %
+                                         , "--low"      , "darkred"
+                                         , "--normal"   , "darkorange"
+                                         , "--high"     , "#198844"
+
+                                         , "--" -- battery specific options
+                                                   -- discharging status
+                                                   , "-o"	, "<fn=1> </fn> <left>%"
+                                                   -- AC "on" status
+                                                   , "-O"	, "<fn=1></fn> <left>%"
+                                                   -- charged status
+                                                   , "-i"	, "<fn=1></fn>"
+                                         ] 50
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "<icon=spaceinvader.xpm/> %StdinReader% }{ <fc=#ffff5f>%cpu%</fc> <fc=#ff5f87>%memory%</fc> <fc=#afd75f>%date%</fc>"
+       , template = "<icon=spaceinvader.xpm/> %StdinReader% }{ | <fc=#a36ac7><fn=1></fn> %myVolume%</fc> | <fc=#3971ed>%cpu%</fc> | <fc=#cc342b>%memory%</fc> | %battery% | <fc=#fba922><fn=1></fn> %date%</fc> | <fc=#00ccff><fn=1></fn> %time%</fc>"
        }
 
