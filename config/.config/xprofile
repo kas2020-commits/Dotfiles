@@ -1,10 +1,10 @@
 #!/bin/sh
 
-picom -b --config ~/.config/picom/picom.conf --experimental-backends --backend glx --glx-no-stencil --vsync &
+picom -b --config ~/.config/picom/picom.conf --experimental-backends --backend glx --glx-no-stencil --vsync --transparent-clipping &
 # Other Picom toggles: -b --vsync --no-fading-openclose --refresh-rate 75
 # nvidia-settings --config="$XDG_CONFIG_HOME/nvidia-settings-rc" &
-# dwmbar &
+dwmbar &
 clipmenud &
 sxhkd &
-xset r rate 230 50 &
+xset r rate 300 50 &
 nitrogen --restore &

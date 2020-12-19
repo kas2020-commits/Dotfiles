@@ -1,13 +1,16 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
 call plug#begin()
-Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'ap/vim-buftabline'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-endwise'
+Plug '9mm/vim-closer'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-lua/completion-nvim'
+" Plug 'morhetz/gruvbox'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Setters:
@@ -26,10 +29,12 @@ set foldenable foldmethod=syntax
 set noet ci pi sts=0 sw=2 ts=2 " Settings for tabs
 set wildmenu wildmode=full ignorecase smartcase " Settings for ':'
 set laststatus=1 " disables the statusline when only 1 window tab being used
-set noswapfile autowrite " Settings for writing to disk
+" set noswapfile
+set autowrite " Settings for writing to disk
 set titlestring=%t title " sets the title of the terminal to be the filename
 set list " This will list out certain characters like tabs or newline
 set completeopt=menuone,noinsert,noselect
+set number relativenumber
 " set guicursor=v-c:block,i-ci-ve:ver25,n-r-cr-o:hor20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc:
@@ -41,25 +46,33 @@ let g:buftabline_indicators=1
 let g:gruvbox_italic=1
 let g:gruvbox_inverse=1
 let g:gruvbox_bold=1
+let g:gruvbox_transp_bg = 1
 let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_plugin_hi_groups = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Initialize Plugins:
-colorscheme gruvbox
+colorscheme gruvbox8
 
-" To get autocomplete add this in the brackets:
-" on_attach=require'completion'.on_attach
-" Also, for rust_analyzer, you could also use rls instead
-lua <<EOF
-require'nvim_lsp'.clangd.setup{ on_attach=require'completion'.on_attach }
-require'nvim_lsp'.rls.setup{ on_attach=require'completion'.on_attach }
+" For rust_analyzer, you could also use rls instead
+:lua << EOF
+	local lspconfig = require('lspconfig')
+	local on_attach = function(_, bufnr)
+		--(delete me to uncomment) require('completion').on_attatch()
+	end
+	local servers = {'clangd', 'rls'}
+	for _, lsp in ipairs(servers) do
+		lspconfig[lsp].setup {
+		on_attach = on_attach,
+		}
+	end
 EOF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Language Server Protocol Commands:
+" LSP Commands:
 nnoremap <silent> K            <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-k>        <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD          <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> <C-]>        <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> <leader>gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> <leader>gr   <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <leader>gd   <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> <leader>vrn  <cmd>lua vim.lsp.buf.rename()<CR>
@@ -69,7 +82,7 @@ nnoremap <silent> <leader><CR>  <cmd>split term://zsh<CR> <cmd>resize 15<CR>a
 nnoremap <silent> <leader><esc> <cmd>let @/ = ""<CR>
 nnoremap <silent> <leader>i     gg=G
 nnoremap <silent> <leader>o     <cmd>setlocal spell! spelllang=en_us<CR>
-nnoremap <silent> <leader>c     <cmd>update<CR>:!compiler <c-r>%<CR>
+nnoremap <silent> <leader>c     <cmd>update<CR>:!compiler <c-r>%<CR>:!texclear %<CR>
 nnoremap <silent> <leader>m     <cmd>!texclear %<CR><CR>
 nnoremap <silent> <leader>p     <cmd>!opout %<CR><CR>
 nnoremap <silent> <leader>s     <cmd>vs<CR>

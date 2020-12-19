@@ -1,7 +1,21 @@
 set recolor "true"
+set window-title-basename "true"
+
+map i recolor
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map K zoom in
+map J zoom out
+map p print
 
 set statusbar-fg                "#ffffff"
 set statusbar-bg                "#282828"
+
+set index-bg                    "#1d2021"
+set index-fg                    "#fbf1c7"
+set index-active-fg             "#fbf1c7"
+set index-active-bg             "#282828"
 
 set inputbar-bg                 "#1d1f21"
 set inputbar-fg                 "#c5c8c6"

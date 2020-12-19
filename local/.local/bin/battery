@@ -5,7 +5,11 @@ for battery in /sys/class/power_supply/BAT?
 do
 	# Get its remaining capacity and charge status.
 	capacity=$(cat "$battery"/capacity 2>/dev/null) || break
-	status=$(sed "s/[Dd]ischarging//;s/[Nn]ot charging/♻️/;s/[Cc]harging/ /;s/[Uu]nknown//;s/[Ff]ull//" "$battery"/status)
-	printf "%s %s%s%%" "$status" "$capacity"
+	status=$(sed "s/[Dd]ischarging//;s/[Cc]harging//;s/[Uu]nknown//;s/[Ff]ull//" "$battery"/status)
+	if [ ${capacity} -eq 100 ]; then
+		printf ""
+	else
+		printf "%s %s%s%%" "$status" "$capacity"
+	fi
 	unset warn
 done | sed 's/ *$//'

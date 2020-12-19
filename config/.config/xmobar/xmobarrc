@@ -15,7 +15,8 @@ Config { font  = "xft:Fira Code:size=13:antialias=true:hinting=true"
                     , Run Cpu ["-t", "cpu (<total>%)","-H","50","--high","red"] 10 -- <bar>
                     , Run Memory ["-t", "mem (<usedratio>%)"] 10 -- <usedbar>
                     , Run StdinReader
-                    , Run Com "/bin/sh" ["-c", "pamixer --get-volume-human"] "myVolume" 10
+                    , Run Com "/bin/sh" ["-c", "pamixer --get-mute | sed \"s/true//;s/false//\""] "myMute" 10
+                    , Run Com "/bin/sh" ["-c", "pamixer --get-volume"] "myVolume" 10
                     , Run Battery        [ "--template" , "<acstatus>"
                                          , "--Low"      , "10"        -- units: %
                                          , "--High"     , "80"        -- units: %
@@ -30,10 +31,10 @@ Config { font  = "xft:Fira Code:size=13:antialias=true:hinting=true"
                                                    , "-O"	, "<fn=1></fn> <left>%"
                                                    -- charged status
                                                    , "-i"	, "<fn=1></fn>"
-                                         ] 50
+                                         ] 60
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "<icon=spaceinvader.xpm/> %StdinReader% }{ | <fc=#a36ac7><fn=1></fn> %myVolume%</fc> | <fc=#3971ed>%cpu%</fc> | <fc=#cc342b>%memory%</fc> | %battery% | <fc=#fba922><fn=1></fn> %date%</fc> | <fc=#00ccff><fn=1></fn> %time%</fc>"
+       , template = "<icon=spaceinvader.xpm/> %StdinReader% }{ | <fc=#a36ac7><fn=1>%myMute%</fn> %myVolume%</fc> | <fc=#3971ed>%cpu%</fc> | <fc=#cc342b>%memory%</fc> | %battery% | <fc=#fba922><fn=1></fn> %date%</fc> | <fc=#00ccff><fn=1></fn> %time%</fc>"
        }
 
