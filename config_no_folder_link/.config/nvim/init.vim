@@ -10,7 +10,6 @@ Plug 'tpope/vim-endwise'
 Plug '9mm/vim-closer'
 Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-lua/completion-nvim'
-" Plug 'morhetz/gruvbox'
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Setters:
@@ -29,7 +28,6 @@ set foldenable foldmethod=syntax
 set noet ci pi sts=0 sw=2 ts=2 " Settings for tabs
 set wildmenu wildmode=full ignorecase smartcase " Settings for ':'
 set laststatus=1 " disables the statusline when only 1 window tab being used
-" set noswapfile
 set autowrite " Settings for writing to disk
 set titlestring=%t title " sets the title of the terminal to be the filename
 set list " This will list out certain characters like tabs or newline
@@ -43,11 +41,9 @@ autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pluggin Settings:
 let g:buftabline_indicators=1
-let g:gruvbox_italic=1
 let g:gruvbox_inverse=1
 let g:gruvbox_bold=1
 let g:gruvbox_transp_bg = 1
-let g:gruvbox_contrast_dark = 'medium'
 let g:gruvbox_plugin_hi_groups = 1
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

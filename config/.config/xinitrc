@@ -26,4 +26,3 @@ fi
 [ -f $xprofile ] && . $xprofile
 
 exec dwm
-# exec xmonad

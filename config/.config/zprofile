@@ -34,4 +34,9 @@ export PATH=$PATH:$HOME/.cargo/bin
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export DIR_COLORS_TEMPLATE="$XDG_CONFIG_HOME/dir_colors"
 
-[ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx
+# [ "$(tty)" = "/dev/tty1" ] && ! pidof Xorg >/dev/null 2>&1  && exec startx
+
+# If running from tty1 start sway
+if [ "$(tty)" = "/dev/tty1" ]; then
+	exec sway --my-next-gpu-wont-be-nvidia
+fi
