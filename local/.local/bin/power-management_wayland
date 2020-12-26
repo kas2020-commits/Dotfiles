@@ -1,6 +1,6 @@
 #!/bin/sh
 
-choices="reboot\nshutdown\nsuspend\nhibernate"
+choices="logout\nreboot\nshutdown\nsuspend\nhibernate"
 
 chosen=$(echo "$choices" | wofi -d -i -p "Power Manager")
 
@@ -9,4 +9,5 @@ case "$chosen" in
     shutdown) systemctl poweroff;;
     suspend) systemctl suspend;;
     hibernate) systemctl hibernate;;
+    logout) pkill -u $USER;;
 esac
