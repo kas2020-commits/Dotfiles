@@ -1,9 +1,6 @@
 super + Return
 	$TERMINAL
 
-super + shift + Return
-	$TERMALT
-
 super + c
 	$TERMINAL -e cmus
 

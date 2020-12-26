@@ -64,6 +64,8 @@ output * bg /usr/share/backgrounds/arch.jpg fill
 
 input * accel_profile flat
 seat seat0 xcursor_theme xcursor-breeze 0
+exec_always import-gsettings
+
 ### Key bindings
 #
 # Basics:
@@ -76,6 +78,9 @@ seat seat0 xcursor_theme xcursor-breeze 0
 
     # Start your launcher
     bindsym $alt+Return exec $menu
+
+    # Power Manager
+    bindsym Control+$alt+Delete exec power-management_wayland
 
     # Start file manager
     bindsym $mod+m exec $term -e nnn
