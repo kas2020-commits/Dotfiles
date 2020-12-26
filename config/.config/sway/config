@@ -1,7 +1,3 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
 
 xwayland disable
@@ -86,6 +82,8 @@ exec_always import-gsettings
     bindsym $mod+m exec $term -e nnn
 
     bindsym $mod+p exec clipman pick -t wofi
+
+    bindsym Print exec grim ~/Pictures/Screenshots/$(date +'%s_grim.png')
 
     bindsym XF86MonBrightnessUp exec light -A 10
     bindsym XF86MonBrightnessDown exec light -U 10

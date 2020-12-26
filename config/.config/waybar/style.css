@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: Fira Code Medium, Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
     min-height: 0;
 }
@@ -79,13 +79,13 @@ window#waybar.chromium {
 #idle_inhibitor,
 #mpd {
     padding: 0 10px;
-    margin: 0 4px;
+    margin: 0 0px;
     color: #ffffff;
 }
 
 #window,
 #workspaces {
-    margin: 0 4px;
+    margin: 0 0px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
