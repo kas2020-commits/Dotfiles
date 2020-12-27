@@ -9,5 +9,5 @@ case "$chosen" in
     shutdown) systemctl poweroff;;
     suspend) systemctl suspend;;
     hibernate) systemctl hibernate;;
-    logout) pkill -u $USER;;
+    logout) swaymsg exit;;
 esac
