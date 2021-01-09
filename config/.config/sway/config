@@ -119,6 +119,10 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
+# Automatically starts a terminal in the scratchpad for use with a unique id.
+exec --no-startup-id alacritty --class "scratch-terminal"
+for_window [app_id="scratch-terminal"] move scratchpad
+
 ### Idle configuration
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \

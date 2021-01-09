@@ -1,15 +1,15 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Plugins:
 call plug#begin()
-Plug 'lifepillar/vim-gruvbox8'
-Plug 'ap/vim-buftabline'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-endwise'
-Plug '9mm/vim-closer'
-Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
+Plug 'lifepillar/vim-gruvbox8'  " colorscheme
+Plug 'ap/vim-buftabline'        " cosmetic view of tabs
+Plug 'sheerun/vim-polyglot'     " syntax highlighting
+Plug 'tpope/vim-commentary'     " universal auto-commenting
+Plug 'junegunn/fzf.vim'         " fzf bindings
+Plug 'tpope/vim-endwise'        " auto close name braces
+Plug '9mm/vim-closer'           " auto close braces
+Plug 'neovim/nvim-lspconfig'    " the IDE part
+" Plug 'nvim-lua/completion-nvim' " autocompletion
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Setters:
@@ -38,6 +38,7 @@ set number relativenumber
 " Misc:
 let mapleader =" "
 autocmd BufWritePre * %s/\s\+$//e " Clears trailing Whitespace on save.
+autocmd VimLeave * !texclear
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pluggin Settings:
 let g:buftabline_indicators=1
@@ -65,46 +66,43 @@ colorscheme gruvbox8
 EOF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LSP Commands:
-nnoremap <silent> K            <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <C-k>        <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-]>        <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> <leader>gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> <leader>gr   <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <leader>gd   <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> <leader>vrn  <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <leader>vca  <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <leader>gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> <leader>gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <leader>gd <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <leader>gn <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <leader>ga <cmd>lua vim.lsp.buf.code_action()<CR>
 " Leader:
-nnoremap <silent> <leader><CR>  <cmd>split term://zsh<CR> <cmd>resize 15<CR>a
-nnoremap <silent> <leader><esc> <cmd>let @/ = ""<CR>
-nnoremap <silent> <leader>i     gg=G
-nnoremap <silent> <leader>o     <cmd>setlocal spell! spelllang=en_us<CR>
-nnoremap <silent> <leader>c     <cmd>update<CR>:!compiler <c-r>%<CR>:!texclear %<CR>
-nnoremap <silent> <leader>m     <cmd>!texclear %<CR><CR>
-nnoremap <silent> <leader>p     <cmd>!opout %<CR><CR>
-nnoremap <silent> <leader>s     <cmd>vs<CR>
-nnoremap <silent> <leader>l     <cmd>wincmd l<CR>
-nnoremap <silent> <leader>h     <cmd>wincmd h<CR>
-nnoremap <silent> <leader>j     <cmd>wincmd j<CR>
-nnoremap <silent> <leader>k     <cmd>wincmd k<CR>
+nnoremap <silent> <leader><CR> <cmd>split term://zsh<CR> <cmd>resize 15<CR>a
+nnoremap <silent> <leader>i    gg=G
+nnoremap <silent> <leader>o    <cmd>setlocal spell! spelllang=en_us<CR>
+nnoremap <silent> <leader>c    <cmd>update<CR>:!compiler <c-r>%<CR>
+nnoremap <silent> <leader>p    <cmd>!opout %<CR><CR>
+nnoremap <silent> <leader>s    <cmd>vs<CR>
+nnoremap <silent> <leader>l    <cmd>wincmd l<CR>
+nnoremap <silent> <leader>h    <cmd>wincmd h<CR>
+nnoremap <silent> <leader>j    <cmd>wincmd j<CR>
+nnoremap <silent> <leader>k    <cmd>wincmd k<CR>
 " Control:
-noremap <silent> <C-h>  <cmd>vertical resize +2<CR>
-noremap <silent> <C-l>  <cmd>vertical resize -2<CR>
-noremap <silent> <C-j>  <cmd>resize -2<CR>
-noremap <silent> <C-k>  <cmd>resize +2<CR>
+noremap <silent> <C-q> <cmd>bdelete<CR>
+noremap <silent> <C-c> <cmd>close<CR>
+noremap <silent> <C-]> <cmd>lua vim.lsp.buf.definition()<CR>
+noremap <silent> <C-h> <cmd>vertical resize +2<CR>
+noremap <silent> <C-l> <cmd>vertical resize -2<CR>
+noremap <silent> <C-j> <cmd>resize -2<CR>
+noremap <silent> <C-k> <cmd>resize +2<CR>
 " Alt:
-noremap <m-q> <cmd>bdelete<CR>
-noremap <m-l> <cmd>bnext<CR>
-noremap <m-h> <cmd>bprev<CR>
-noremap <m-k> <C-u>
-noremap <m-j> <C-d>
-noremap <m-p> <cmd>FZF<CR>
+noremap <silent> <m-l> <cmd>bnext<CR>
+noremap <silent> <m-h> <cmd>bprev<CR>
+noremap <silent> <m-k> <C-u>
+noremap <silent> <m-j> <C-d>
+noremap <silent> <m-p> <cmd>FZF<CR>
 " UpperCase:
 nnoremap Y y$
 nnoremap W <cmd>update<CR>
-nnoremap Q <cmd>q<CR>
-vnoremap J <cmd>m '>+1<CR>gv=gv
-vnoremap K <cmd>m '<-2<CR>gv=gv
+nnoremap K <cmd>lua vim.lsp.buf.hover()<CR>
 " Terminal:
 tnoremap <Esc> <C-\><C-n>
 tnoremap <m-q> <C-\><C-n><cmd>bd!<CR>
+" Misc:
+nnoremap <esc> <cmd>let @/ = ""<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

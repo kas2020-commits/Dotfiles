@@ -1,9 +1,13 @@
 #!/bin/sh
 
-file=$(readlink -f "$1")
-dir=$(dirname "$file")
-base="${file%.*}"
+files=$(ls *.tex 2>/dev/null)
 
-cd "$dir" || exit
+[ $? -ne 0 ] && exit 1
 
-rm -f "${base}".log "${base}".aux "${base}".out
+for i in $files; do
+	file=$(readlink -f "$i")
+	dir=$(dirname "$file")
+	base="${file%.*}"
+	cd "$dir" || exit
+	rm -f "${base}".log "${base}".aux "${base}".out
+done
